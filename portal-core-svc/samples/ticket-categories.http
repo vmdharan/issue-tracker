@@ -1,0 +1,36 @@
+###
+
+GET http://localhost:3000/ticket-categories
+
+###
+
+GET http://localhost:3000/ticket-categories/1
+
+###
+POST http://localhost:3000/ticket-categories
+Content-Type: application/json
+
+{
+    "code": "1",
+    "name": "Default",
+    "description": "Default category",
+    "parentCategoryCode": ""
+}
+
+###
+
+PUT http://localhost:3000/ticket-categories/1
+Content-Type: application/json
+
+{
+    "code": "1",
+    "name": "Default",
+    "description": "Default",
+    "parentCategoryCode": ""
+}
+
+###
+
+DELETE  http://localhost:3000/ticket-categories/1
+
+###

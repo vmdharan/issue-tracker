@@ -1,0 +1,34 @@
+###
+
+GET http://localhost:3000/ticket-severities
+
+###
+
+GET http://localhost:3000/ticket-severities/1
+
+###
+POST http://localhost:3000/ticket-severities
+Content-Type: application/json
+
+{
+    "code": "1",
+    "name": "Low",
+    "description": "Low severity"
+}
+
+###
+
+PUT http://localhost:3000/ticket-severities/1
+Content-Type: application/json
+
+{
+    "code": "1",
+    "name": "Low",
+    "description": "Minimal impact"
+}
+
+###
+
+DELETE  http://localhost:3000/ticket-severities/1
+
+###

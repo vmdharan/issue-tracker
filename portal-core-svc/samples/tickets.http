@@ -1,0 +1,42 @@
+###
+
+GET http://localhost:3000/tickets
+
+###
+
+GET http://localhost:3000/tickets/1
+
+###
+POST http://localhost:3000/tickets
+Content-Type: application/json
+
+{
+    "code": "1",
+    "title": "Default",
+    "description": "Default category",
+    "creator": "Yoda",
+    "assignee": "Obi-Wan",
+    "category": "Default",
+    "severity": "Low"
+}
+
+###
+
+PUT http://localhost:3000/tickets/1
+Content-Type: application/json
+
+{
+    "code": "1",
+    "name": "Default",
+    "description": "Some detailed description.",
+    "creator": "Yoda",
+    "assignee": "Obi-Wan",
+    "category": "Default",
+    "severity": "Low"
+}
+
+###
+
+DELETE  http://localhost:3000/tickets/1
+
+###

@@ -1,0 +1,39 @@
+###
+
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/users/yoda
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstName": "Master",
+    "lastName": "Yoda",
+    "email": "yoda@issue-tracker",
+    "userName": "yoda",
+    "password": "force1234"
+}
+
+###
+
+PUT http://localhost:3000/users/yoda
+Content-Type: application/json
+
+{
+    "firstName": "Master",
+    "lastName": "Yoda",
+    "email": "yoda2@issue-tracker",
+    "userName": "yoda2",
+    "password": "force1234"
+}
+
+###
+
+DELETE  http://localhost:3000/users/yoda
+
+###

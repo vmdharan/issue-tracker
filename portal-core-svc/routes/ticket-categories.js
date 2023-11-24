@@ -1,0 +1,107 @@
+const express = require('express');
+const router = express.Router();
+const TicketCategory = require('../models/TicketCategory');
+
+// Get all ticket categories.
+router.get('/', async (request, response) => {
+    try {
+        const ticketCategories = await TicketCategory.find({});
+        if(ticketCategories) {
+            return response.send(ticketCategories);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
+// Get a single ticket category by code.
+router.get('/:code', async (request, response) => {
+    try {
+        const ticketCategory = await TicketCategory.find({code: request.params.code});
+        if(ticketCategory) {
+            return response.send(ticketCategory);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
+// Create a new ticket category.
+router.post('/', async (request, response) => {
+    const { code, name, description, parentCategoryCode } = request.body;
+    try {
+        let ticketCategory = await TicketCategory.findOne({ code });
+        if(ticketCategory) {
+            return response.status(400)
+                .json({
+                    errors: [{
+                        message: 'Record already exists in database.'
+                    }]
+                });
+        }
+
+        ticketCategory = new TicketCategory({
+            code,
+            name,
+            description,
+            parentCategoryCode
+        });
+        await ticketCategory.save();
+        response.end('Saved successfully.');
+    } catch (err) {
+        console.error(err.message);
+        response.status(500, 'Internal Server Error');
+    }
+});
+
+// Edit an existing ticket category.
+router.put('/:code', async (request, response) => {
+    const { code, name, description, parentCategoryCode } = request.body;
+    try {
+        let ticketCategory = await TicketCategory.findOne({ code: request.params.code });
+        if(!ticketCategory) {
+            return response.status(400)
+                .json({
+                    errors: [{
+                        message: 'Record does not exist in database.'
+                    }]
+                });
+        }
+
+        ticketCategory.code = code;
+        ticketCategory.name = name;
+        ticketCategory.description = description;
+        ticketCategory.parentCategoryCode = parentCategoryCode;
+
+        await ticketCategory.save();
+        response.end('Updated successfully.');
+    } catch (err) {
+        console.error(err.message);
+        response.status(500, 'Internal Server Error');
+    }
+});
+
+// Delete an existing ticket category.
+router.delete('/:code', async (request, response) => {
+    try {
+        let ticketCategory = await TicketCategory.findOne({ code: request.params.code });
+        if(!ticketCategory) {
+            return response.status(400)
+                .json({
+                    errors: [{
+                        message: 'Record does not exist in database.'
+                    }]
+                });
+        }
+
+        await ticketCategory.deleteOne();
+        response.end('Deleted successfully.');
+    } catch (err) {
+        console.error(err.message);
+        response.status(500, 'Internal Server Error');
+    }
+});
+
+module.exports = router;
