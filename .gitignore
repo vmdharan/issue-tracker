@@ -4,3 +4,5 @@ portal/parcel-bundle-reports
 portal/dist
 
 portal-core-svc/node_modules
+
+portal-user-svc/node_modules

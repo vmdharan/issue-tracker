@@ -1,13 +1,12 @@
 {
-  "name": "portal-core-svc",
+  "name": "portal-user-svc",
   "version": "0.0.1",
-  "description": "Core service for the issue-tracker web portal",
+  "description": "User service for the issue-tracker web portal",
   "main": "server.js",
   "scripts": {
-    "server-core": "nodemon",
-    "server-user": "npm run dev --prefix ../portal-user-svc",
+    "server-user": "nodemon",
     "client": "npm start --prefix ../portal",
-    "dev": "concurrently \"npm run server-core\" \"npm run server-user\" \"npm run client\"",
+    "dev": "npm run server-user",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

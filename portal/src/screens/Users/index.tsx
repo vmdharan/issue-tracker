@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import CoreService from 'services/core';
+import UserService from 'services/user';
 
 const Users = () => {
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
         const getList = async () => {
-            const res = await CoreService.GetItems('users');
+            const res = await UserService.GetItems('users');
             setUserList(res);
         };
         getList();

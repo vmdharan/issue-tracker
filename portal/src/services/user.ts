@@ -1,4 +1,4 @@
-import { CORE_HOST_URI as HOST_URI } from './config';
+import { USER_HOST_URI as HOST_URI } from './config';
 
 const GetItem = async (itemName: string, id: string) => {
     const response = await fetch(HOST_URI + itemName + '/' + id)
