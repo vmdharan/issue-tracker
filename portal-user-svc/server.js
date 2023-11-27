@@ -14,6 +14,7 @@ app.use(express.json({ extended: false }));
 
 // routes
 app.use('/users', require('./routes/users'));
+app.use('/login', require('./routes/login'));
 
 app.listen(PORT, () => {
     console.log('Listening on port: ', PORT);

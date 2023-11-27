@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import SideNav from 'components/SideNav';
@@ -13,6 +13,7 @@ import TicketCategories from 'screens/TicketCategories';
 import TicketSeverities from 'screens/TicketSeverities';
 import ProductCategories from 'screens/ProductCategories';
 import Products from 'screens/Products';
+import Login from './screens/Login';
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ function Root() {
 }
 
 const App = () => {
+    const [token, setToken] = useState();
+    if(!token) {
+        return <Login setToken={setToken} />
+    }
     return <RouterProvider router={router} />;
 };
 

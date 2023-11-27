@@ -1,4 +1,5 @@
 import { USER_HOST_URI as HOST_URI } from './config';
+import { LoginUserType } from './types';
 
 const GetItem = async (itemName: string, id: string) => {
     const response = await fetch(HOST_URI + itemName + '/' + id)
@@ -24,7 +25,7 @@ const GetItems = async (itemName: string) => {
     return response;
 };
 
-const CreateItem = async (itemName: string) => {
+const CreateItem = async (itemName: string, postBody: string) => {
     const postRequest = (postBody: string) => ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -60,10 +61,24 @@ const DeleteItem = async (itemName: string, id: string) => {
     return deleteResult;
 };
 
+const LoginUser = async (credentials: LoginUserType) => {
+    const postRequest = (postBody: LoginUserType) => ({
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(postBody),
+    });
+    const postResult = await fetch(HOST_URI + 'login', postRequest(credentials))
+        .then((res) => res.json())
+        .catch((err) => console.log(err));
+
+    return postResult;
+};
+
 export default {
     GetItem,
     GetItems,
     CreateItem,
     EditItem,
     DeleteItem,
+    LoginUser,
 };
