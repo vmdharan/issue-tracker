@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
-import SideNav from 'components/SideNav';
-import MainContent from 'components/MainContent';
+import Header from 'components/organisms/Header';
+import Footer from 'components/organisms/Footer';
+import SideNav from 'components/organisms/SideNav';
+import MainContent from 'components/organisms/MainContent';
 import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
 import Dashboard from 'screens/Dashboard';
 import ErrorPage from 'screens/ErrorPage';
