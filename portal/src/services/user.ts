@@ -31,7 +31,10 @@ const CreateItem = async (itemName: string, postBody: string) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ body: postBody }),
     });
-    const postResult = await fetch(HOST_URI + itemName + '/create', postRequest('1'))
+    const postResult = await fetch(
+        HOST_URI + itemName + '/create',
+        postRequest(postBody),
+    )
         .then((res) => res.json())
         .catch((err) => console.log(err));
 

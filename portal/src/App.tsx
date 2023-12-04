@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import SideNav from 'components/SideNav';
 import MainContent from 'components/MainContent';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
 import Dashboard from 'screens/Dashboard';
 import ErrorPage from 'screens/ErrorPage';
 import Tickets from 'screens/Tickets';
@@ -14,6 +14,7 @@ import TicketSeverities from 'screens/TicketSeverities';
 import ProductCategories from 'screens/ProductCategories';
 import Products from 'screens/Products';
 import Login from './screens/Login';
+import useToken from './hooks/useToken';
 
 const router = createBrowserRouter([
     {
@@ -56,9 +57,17 @@ const router = createBrowserRouter([
 ]);
 
 function Root() {
+    const { clearToken } = useToken();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        clearToken();
+        navigate(0);
+    };
+
     return (
         <>
-            <Header />
+            <Header handleLogout={handleLogout} />
             <SideNav />
             <MainContent />
             <Footer />
@@ -67,9 +76,10 @@ function Root() {
 }
 
 const App = () => {
-    const [token, setToken] = useState();
-    if(!token) {
-        return <Login setToken={setToken} />
+    const { token, setToken } = useToken();
+
+    if (!token) {
+        return <Login setToken={setToken} />;
     }
     return <RouterProvider router={router} />;
 };

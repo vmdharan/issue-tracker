@@ -1,5 +1,7 @@
+import { CurrentSessionTokenPropsType } from '~/types/token';
+
 type LoginPropsType = {
-    setToken: React.Dispatch<React.SetStateAction<undefined>>;
+    setToken: (_: CurrentSessionTokenPropsType) => void;
 };
 
 export type { LoginPropsType };

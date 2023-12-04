@@ -1,6 +1,7 @@
 import React from 'react';
+import { HeaderPropsType } from './types';
 
-const Header = () => {
+const Header = ({ handleLogout }: HeaderPropsType) => {
     const isSideBarOpen = true;
     const adaptiveMargin = isSideBarOpen ? '200px' : '48px';
 
@@ -12,7 +13,13 @@ const Header = () => {
                 marginLeft: adaptiveMargin,
             }}
         >
-            Header
+            <>Header</>
+            <span
+                style={{ marginLeft: '16px', cursor: 'pointer' }}
+                onClick={handleLogout}
+            >
+                Log out
+            </span>
         </header>
     );
 };
