@@ -7,7 +7,7 @@ const TicketSchema = z.object({
     creator: z.string(),
     assignee: z.string(),
     category: z.string(),
-    severity: z.string()
+    severity: z.string(),
 });
 
 export default TicketSchema;

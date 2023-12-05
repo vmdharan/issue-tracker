@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import UserService from 'services/user';
+import { UserListSchema } from 'schemas/user';
+import DataTable from 'components/molecules/DataTable';
 
 const Users = () => {
     const [userList, setUserList] = useState([]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const columns: any[] = UserListSchema;
 
     useEffect(() => {
         const getList = async () => {
@@ -13,9 +17,12 @@ const Users = () => {
     }, []);
 
     if (!userList) return <>N/A</>;
-    console.log(userList);
 
-    return <>Users</>;
+    return (
+        <>
+            <DataTable rows={userList} columns={columns} />
+        </>
+    );
 };
 
 export default Users;

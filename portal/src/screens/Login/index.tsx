@@ -21,24 +21,30 @@ const Login = ({ setToken }: LoginPropsType) => {
 
     return (
         <>
-            <Typography variant='h4'>Login form</Typography>
+            <Typography variant="h4">Login form</Typography>
             <form onSubmit={handleLogin}>
                 <>
                     <TextField
-                        type="text" color="primary" label='Username'
+                        type="text"
+                        color="primary"
+                        label="Username"
                         onChange={(e) => setUserName(e.target.value)}
-                        sx={{marginTop: '1.5rem', display: 'block'}}
+                        sx={{ marginTop: '1.5rem', display: 'block' }}
                     />
                 </>
                 <>
                     <TextField
-                        type="password" color="primary" label='Password'
+                        type="password"
+                        color="primary"
+                        label="Password"
                         onChange={(e) => setPassword(e.target.value)}
-                        sx={{marginTop: '1.5rem', display: 'block'}}
+                        sx={{ marginTop: '1.5rem', display: 'block' }}
                     />
                 </>
-                <div style={{marginTop: '1.5rem'}}>
-                    <Button color='primary' variant='contained' type="submit">Log in</Button>
+                <div style={{ marginTop: '1.5rem' }}>
+                    <Button color="primary" variant="contained" type="submit">
+                        Log in
+                    </Button>
                 </div>
             </form>
         </>
