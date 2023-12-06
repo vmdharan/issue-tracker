@@ -50,7 +50,7 @@ const DataTable = (props: DataTableProps) => {
                                     <a href="#">Edit</a>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <a href="#">Delete</a>
+                                    <a href="#" onClick={props.confirmDelete}>Delete</a>
                                 </TableCell>
                             </TableRow>
                         ))}
