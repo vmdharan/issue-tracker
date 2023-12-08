@@ -1,7 +1,13 @@
 import { DialogProps, Dialog as MuiDialog } from '@mui/material';
 import { DialogTitleProps, DialogTitle as MuiDialogTitle } from '@mui/material';
-import { DialogActionsProps, DialogActions as MuiDialogActions } from '@mui/material';
-import { DialogContentProps,  DialogContent as MuiDialogContent } from '@mui/material';
+import {
+    DialogActionsProps,
+    DialogActions as MuiDialogActions,
+} from '@mui/material';
+import {
+    DialogContentProps,
+    DialogContent as MuiDialogContent,
+} from '@mui/material';
 import React from 'react';
 
 const Dialog: React.FC<DialogProps> = (props: DialogProps) => {
@@ -21,8 +27,4 @@ const DialogTitle: React.FC<DialogTitleProps> = (props: DialogTitleProps) => {
 };
 
 export default Dialog;
-export {
-    DialogActions,
-    DialogContent,
-    DialogTitle
-}
+export { DialogActions, DialogContent, DialogTitle };

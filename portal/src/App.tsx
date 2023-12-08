@@ -23,34 +23,129 @@ const router = createBrowserRouter([
             { path: '/', element: <Dashboard />, errorElement: <ErrorPage /> },
             {
                 path: '/tickets',
-                element: <Tickets />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <Tickets />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
             {
                 path: '/ticket-severities',
-                element: <TicketSeverities />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <TicketSeverities />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
             {
                 path: '/ticket-categories',
-                element: <TicketCategories />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <TicketCategories />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
             {
                 path: '/products',
-                element: <Products />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <Products />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
             {
                 path: '/product-categories',
-                element: <ProductCategories />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <ProductCategories />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
-            { path: '/users', element: <Users />, errorElement: <ErrorPage /> },
+            {
+                path: '/users',
+                errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <Users />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
+            },
             {
                 path: '/organisations',
-                element: <Organisations />,
                 errorElement: <ErrorPage />,
+                children: [
+                    {
+                        path: '',
+                        element: <Organisations />,
+                    },
+                    {
+                        path: 'create',
+                        element: <ErrorPage />,
+                    },
+                    {
+                        path: 'edit/:id',
+                        element: <ErrorPage />,
+                    },
+                ],
             },
         ],
     },

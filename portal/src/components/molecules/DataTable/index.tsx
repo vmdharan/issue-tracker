@@ -47,10 +47,14 @@ const DataTable = (props: DataTableProps) => {
                                     </TableCell>
                                 ))}
                                 <TableCell align="center">
-                                    <a href="#">Edit</a>
+                                    <a href={`/${props.tag}/edit/${row._id}`}>
+                                        Edit
+                                    </a>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <a href="#" onClick={props.confirmDelete}>Delete</a>
+                                    <button onClick={props.confirmDelete}>
+                                        Delete
+                                    </button>
                                 </TableCell>
                             </TableRow>
                         ))}

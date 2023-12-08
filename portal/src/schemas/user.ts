@@ -1,4 +1,4 @@
-import { ZodNumber, ZodString, z } from 'zod';
+import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
 
 const MAX_NAME_LENGTH = 32;
@@ -15,18 +15,18 @@ const UserSchema = z.object({
     organisationCode: z.string(),
 });
 
-const UserFormSchema = Object.entries(UserSchema.shape).map(entry => {
-    if(entry[1] instanceof ZodString) {
-        return { 
-            name: entry[0], 
+const UserFormSchema = Object.entries(UserSchema.shape).map((entry) => {
+    if (entry[1] instanceof ZodString) {
+        return {
+            name: entry[0],
             type: 'TextBox',
-            checks: entry[1]?._def.checks.filter(f => f != undefined)
+            checks: entry[1]?._def.checks.filter((f) => f != undefined),
         };
     }
 
     return {
         name: entry[0],
-        type: 'TextBox'
+        type: 'TextBox',
     };
 });
 

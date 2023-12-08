@@ -4,6 +4,7 @@ type DataTableProps = {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     columns: any[];
     confirmDelete: () => void;
+    tag: string;
 };
 
 export type { DataTableProps };
