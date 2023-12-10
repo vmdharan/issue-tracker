@@ -15,6 +15,8 @@ import ProductCategories from 'screens/ProductCategories';
 import Products from 'screens/Products';
 import Login from './screens/Login';
 import useToken from './hooks/useToken';
+import CreateEditForm from './components/organisms/CreateEditForm';
+import { UserFormSchema } from './schemas/user';
 
 const router = createBrowserRouter([
     {
@@ -121,11 +123,11 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'create',
-                        element: <ErrorPage />,
+                        element: <CreateEditForm name='User' type='Create' schema={UserFormSchema} onSubmit={() => {}} />,
                     },
                     {
                         path: 'edit/:id',
-                        element: <ErrorPage />,
+                        element: <CreateEditForm name='User' type='Edit' schema={UserFormSchema} onSubmit={() => {}} />,
                     },
                 ],
             },

@@ -1,5 +1,6 @@
 import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
+import FormSchemaType from './types';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -15,7 +16,7 @@ const UserSchema = z.object({
     organisationCode: z.string(),
 });
 
-const UserFormSchema = Object.entries(UserSchema.shape).map((entry) => {
+const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map((entry) => {
     if (entry[1] instanceof ZodString) {
         return {
             name: entry[0],
