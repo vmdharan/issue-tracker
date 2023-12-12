@@ -13,4 +13,4 @@ type CreateEditFormPropsType = {
 
 type FormVariant = 'Create' | 'Edit';
 
-export type { CreateEditFormPropsType };
+export type { CreateEditFormPropsType, FormVariant };

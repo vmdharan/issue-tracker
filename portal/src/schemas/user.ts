@@ -2,6 +2,7 @@ import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
 import FormSchemaType, { ServiceAPI } from './types';
 import UserService from 'services/user';
+import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -57,5 +58,29 @@ const UserAPI: ServiceAPI = {
     deleteItem: UserService.DeleteItem,
 };
 
+const UserEditFormProps = {
+    name: SCHEMA_TAG_TITLE,
+    type: 'Edit' as FormVariant,
+    schema: UserFormSchema,
+    data: UserSchema,
+    itemName: SCHEMA_TAG,
+    submitData: UserAPI.editItem,
+    loadData: UserAPI.getItem,
+};
+
+const UserCreateFormProps = {
+    ...UserEditFormProps,
+    type: 'Create' as FormVariant,
+    submitData: UserAPI.createItem,
+};
+
 export default UserSchema;
-export { UserFormSchema, UserListSchema, UserAPI, SCHEMA_TAG, SCHEMA_TAG_TITLE };
+export {
+    UserFormSchema,
+    UserListSchema,
+    UserAPI,
+    SCHEMA_TAG,
+    SCHEMA_TAG_TITLE,
+    UserEditFormProps,
+    UserCreateFormProps,
+};
