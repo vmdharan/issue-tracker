@@ -8,7 +8,6 @@ import Dashboard from 'components/pages/Dashboard';
 import ErrorPage from 'components/pages/ErrorPage';
 import Tickets from 'components/pages/Tickets';
 import Organisations from 'components/pages/Organisations';
-import Users from 'components/pages/Users';
 import TicketCategories from 'components/pages/TicketCategories';
 import TicketSeverities from 'components/pages/TicketSeverities';
 import ProductCategories from 'components/pages/ProductCategories';
@@ -16,7 +15,8 @@ import Products from 'components/pages/Products';
 import Login from 'components/pages/Login';
 import useToken from 'hooks/useToken';
 import CreateEditForm from 'components/organisms/CreateEditForm';
-import { UserCreateFormProps, UserEditFormProps } from 'schemas/user';
+import { UserCreateFormProps, UserEditFormProps, UserItemContentProps } from 'schemas/user';
+import ItemContent from './components/organisms/ItemContent';
 
 const router = createBrowserRouter([
     {
@@ -119,7 +119,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: '',
-                        element: <Users />,
+                        element: <ItemContent {...UserItemContentProps} />,
                     },
                     {
                         path: 'create',

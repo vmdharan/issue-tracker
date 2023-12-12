@@ -58,6 +58,13 @@ const UserAPI: ServiceAPI = {
     deleteItem: UserService.DeleteItem,
 };
 
+const UserItemContentProps = {
+    service: UserAPI,
+    tag: SCHEMA_TAG,
+    tagTitle: SCHEMA_TAG_TITLE,
+    columns: UserListSchema
+};
+
 const UserEditFormProps = {
     name: SCHEMA_TAG_TITLE,
     type: 'Edit' as FormVariant,
@@ -76,11 +83,7 @@ const UserCreateFormProps = {
 
 export default UserSchema;
 export {
-    UserFormSchema,
-    UserListSchema,
-    UserAPI,
-    SCHEMA_TAG,
-    SCHEMA_TAG_TITLE,
+    UserItemContentProps,
     UserEditFormProps,
     UserCreateFormProps,
 };
