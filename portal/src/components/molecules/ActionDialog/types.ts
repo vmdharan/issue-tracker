@@ -8,7 +8,7 @@ type ActionDialogProps = {
 };
 
 type ActionDialogActionsProps = {
-    positiveAction: () => void;
+    positiveAction: (id: string) => void;
     negativeAction: () => void;
     positiveActionText: string;
     negativeActionText: string;

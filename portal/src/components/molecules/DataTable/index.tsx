@@ -52,7 +52,9 @@ const DataTable = (props: DataTableProps) => {
                                     </a>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <button onClick={props.confirmDelete}>
+                                    <button
+                                        onClick={() => props.confirmDelete(row._id)}
+                                    >
                                         Delete
                                     </button>
                                 </TableCell>

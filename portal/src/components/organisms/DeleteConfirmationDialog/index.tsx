@@ -22,7 +22,7 @@ const DeleteConfirmationDialog = (props: DeleteConfirmationDialogProps) => {
             <Button
                 color="primary"
                 variant="contained"
-                onClick={props.actionProps.positiveAction}
+                onClick={() => props.actionProps.positiveAction(props.id)}
             >
                 {props.actionProps.positiveActionText}
             </Button>

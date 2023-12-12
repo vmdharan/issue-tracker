@@ -4,6 +4,7 @@ type DeleteConfirmationDialogProps = {
     open: boolean;
     title?: string;
     content?: string;
+    id: string;
     actionProps: ActionDialogActionsProps;
 };
 

@@ -1,12 +1,15 @@
 import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
-import FormSchemaType from './types';
+import FormSchemaType, { ServiceAPI } from './types';
 import UserService from 'services/user';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
 const MIN_PASSWORD_LENGTH = 8;
 const MAX_PASSWORD_LENGTH = 16;
+
+const SCHEMA_TAG = 'users';
+const SCHEMA_TAG_TITLE = 'User';
 
 const UserSchema = z.object({
     firstName: z.string().max(MAX_NAME_LENGTH),
@@ -17,20 +20,22 @@ const UserSchema = z.object({
     organisationCode: z.string(),
 });
 
-const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map((entry) => {
-    if (entry[1] instanceof ZodString) {
+const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
+    (entry) => {
+        if (entry[1] instanceof ZodString) {
+            return {
+                name: entry[0],
+                type: 'TextBox',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+            };
+        }
+
         return {
             name: entry[0],
             type: 'TextBox',
-            checks: entry[1]?._def.checks.filter((f) => f != undefined),
         };
-    }
-
-    return {
-        name: entry[0],
-        type: 'TextBox',
-    };
-});
+    },
+);
 
 const UserSchemaSubset = UserSchema.omit({ password: true });
 const UserListSchema = Object.keys(UserSchemaSubset.keyof().Values).map(
@@ -44,12 +49,13 @@ const UserListSchema = Object.keys(UserSchemaSubset.keyof().Values).map(
     },
 );
 
-const UserAPI = {
-    createUser: UserService.CreateItem,
-    getUser: UserService.GetItem,
-    editUser: UserService.EditItem,
-    deleteUser: UserService.DeleteItem
+const UserAPI: ServiceAPI = {
+    createItem: UserService.CreateItem,
+    getItem: UserService.GetItem,
+    getItems: UserService.GetItems,
+    editItem: UserService.EditItem,
+    deleteItem: UserService.DeleteItem,
 };
 
 export default UserSchema;
-export { UserFormSchema, UserListSchema, UserAPI };
+export { UserFormSchema, UserListSchema, UserAPI, SCHEMA_TAG, SCHEMA_TAG_TITLE };

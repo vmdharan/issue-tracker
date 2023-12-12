@@ -1,4 +1,5 @@
-import FormSchemaType, { DataSchema } from "~/schemas/types";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import FormSchemaType, { DataSchema } from 'schemas/types';
 
 type CreateEditFormPropsType = {
     data: DataSchema;

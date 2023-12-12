@@ -49,7 +49,7 @@ router.post('/', async (request, response) => {
             parentCategoryCode
         });
         await ticketCategory.save();
-        response.end('Saved successfully.');
+        response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -76,7 +76,7 @@ router.put('/:code', async (request, response) => {
         ticketCategory.parentCategoryCode = parentCategoryCode;
 
         await ticketCategory.save();
-        response.end('Updated successfully.');
+        response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -97,7 +97,7 @@ router.delete('/:code', async (request, response) => {
         }
 
         await ticketCategory.deleteOne();
-        response.end('Deleted successfully.');
+        response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');

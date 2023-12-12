@@ -52,7 +52,7 @@ router.post('/', async (request, response) => {
             severity
         });
         await ticket.save();
-        response.end('Saved successfully.');
+        response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -82,7 +82,7 @@ router.put('/:code', async (request, response) => {
         ticket.severity = severity;
 
         await ticket.save();
-        response.end('Updated successfully.');
+        response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -103,7 +103,7 @@ router.delete('/:code', async (request, response) => {
         }
 
         await ticket.deleteOne();
-        response.end('Deleted successfully.');
+        response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
