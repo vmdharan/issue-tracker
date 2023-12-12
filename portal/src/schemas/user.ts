@@ -1,6 +1,7 @@
 import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
 import FormSchemaType from './types';
+import UserService from 'services/user';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -43,5 +44,12 @@ const UserListSchema = Object.keys(UserSchemaSubset.keyof().Values).map(
     },
 );
 
+const UserAPI = {
+    createUser: UserService.CreateItem,
+    getUser: UserService.GetItem,
+    editUser: UserService.EditItem,
+    deleteUser: UserService.DeleteItem
+};
+
 export default UserSchema;
-export { UserFormSchema, UserListSchema };
+export { UserFormSchema, UserListSchema, UserAPI };

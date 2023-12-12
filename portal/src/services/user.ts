@@ -25,29 +25,26 @@ const GetItems = async (itemName: string) => {
     return response;
 };
 
-const CreateItem = async (itemName: string, postBody: string) => {
+const CreateItem = async (itemName: string, id: string = '-1', postBody: string) => {
     const postRequest = (postBody: string) => ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ body: postBody }),
+        body: postBody,
     });
-    const postResult = await fetch(
-        HOST_URI + itemName + '/create',
-        postRequest(postBody),
-    )
+    const postResult = await fetch(HOST_URI + itemName + '/', postRequest(postBody))
         .then((res) => res.json())
         .catch((err) => console.log(err));
 
     return postResult;
 };
 
-const EditItem = async (itemName: string) => {
+const EditItem = async (itemName: string, id: string, postBody: string) => {
     const putRequest = (postBody: string) => ({
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ body: postBody }),
+        body: postBody,
     });
-    const putResult = await fetch(HOST_URI + itemName + '/edit', putRequest('1'))
+    const putResult = await fetch(HOST_URI + itemName + '/' + id, putRequest(postBody))
         .then((res) => res.json())
         .catch((err) => console.log(err));
 
@@ -55,7 +52,7 @@ const EditItem = async (itemName: string) => {
 };
 
 const DeleteItem = async (itemName: string, id: string) => {
-    const deleteResult = await fetch(HOST_URI + itemName + '/delete/' + id, {
+    const deleteResult = await fetch(HOST_URI + itemName + '/' + id, {
         method: 'DELETE',
     })
         .then((res) => res.json())

@@ -16,7 +16,7 @@ import Products from 'screens/Products';
 import Login from './screens/Login';
 import useToken from './hooks/useToken';
 import CreateEditForm from './components/organisms/CreateEditForm';
-import { UserFormSchema } from './schemas/user';
+import UserSchema, { UserAPI, UserFormSchema } from './schemas/user';
 
 const router = createBrowserRouter([
     {
@@ -123,11 +123,15 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'create',
-                        element: <CreateEditForm name='User' type='Create' schema={UserFormSchema} onSubmit={() => {}} />,
+                        element: <CreateEditForm name='User' type='Create' schema={UserFormSchema} 
+                            data={UserSchema} itemName='users'
+                            submitData={UserAPI.createUser} loadData={UserAPI.getUser} />,
                     },
                     {
                         path: 'edit/:id',
-                        element: <CreateEditForm name='User' type='Edit' schema={UserFormSchema} onSubmit={() => {}} />,
+                        element: <CreateEditForm name='User' type='Edit' schema={UserFormSchema} 
+                            data={UserSchema} itemName='users'
+                            submitData={UserAPI.editUser} loadData={UserAPI.getUser} />,
                     },
                 ],
             },

@@ -15,10 +15,10 @@ router.get('/', async (request, response) => {
     }
 });
 
-// Get a single user by userName.
-router.get('/:userName', async (request, response) => {
+// Get a single user by id.
+router.get('/:id', async (request, response) => {
     try {
-        const user = await User.find({userName: request.params.userName});
+        const user = await User.find({_id: request.params.id});
         if(user) {
             return response.send(user);
         }
@@ -30,7 +30,7 @@ router.get('/:userName', async (request, response) => {
 
 // Create a new user.
 router.post('/', async (request, response) => {
-    const { firstName, lastName, email, userName, password } = request.body;
+    const { firstName, lastName, email, userName, password, organisationCode } = request.body;
     try {
         let user = await User.findOne({ userName });
         if(user) {
@@ -47,10 +47,11 @@ router.post('/', async (request, response) => {
             lastName,
             email,
             userName,
-            password
+            password,
+            organisationCode
         });
         await user.save();
-        response.end('Saved successfully.');
+        response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -58,10 +59,11 @@ router.post('/', async (request, response) => {
 });
 
 // Edit an existing user.
-router.put('/:userName', async (request, response) => {
-    const { firstName, lastName, email, userName, password } = request.body;
+router.put('/:id', async (request, response) => {
+    console.log(request);
+    const { firstName, lastName, email, userName, password, organisationCode } = request.body;
     try {
-        let user = await User.findOne({ userName: request.params.userName });
+        let user = await User.findOne({ _id: request.params.id });
         if(!user) {
             return response.status(400)
                 .json({
@@ -76,9 +78,10 @@ router.put('/:userName', async (request, response) => {
         user.email = email;
         user.userName = userName;
         user.password = password;
+        user.organisationCode = organisationCode;
 
         await user.save();
-        response.end('Updated successfully.');
+        response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
@@ -86,9 +89,9 @@ router.put('/:userName', async (request, response) => {
 });
 
 // Delete an existing user.
-router.delete('/:userName', async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
-        let user = await User.findOne({ userName: request.params.userName });
+        let user = await User.findOne({ _id: request.params.id });
         if(!user) {
             return response.status(400)
                 .json({
@@ -99,7 +102,7 @@ router.delete('/:userName', async (request, response) => {
         }
 
         await user.deleteOne();
-        response.end('Deleted successfully.');
+        response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
