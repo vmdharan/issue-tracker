@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ZodStringCheck } from 'zod';
 import UserSchema from './user';
+import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
 
 type FormSchemaType = {
     name: string;
@@ -18,5 +19,29 @@ type ServiceAPI = {
 
 type DataSchema = typeof UserSchema;
 
+type ListSchema = {
+    field: string;
+    headerName: string;
+    editable: boolean;
+    width: number;
+};
+
+type ElementContentProps = {
+    service: ServiceAPI;
+    tag: string;
+    tagTitle: string;
+    columns: ListSchema[];
+};
+
+type ElementEditFormProps = {
+    name: string;
+    type: FormVariant;
+    schema: FormSchemaType[];
+    data: DataSchema
+    itemName: string;
+    submitData: (itemName: string, id: string, postBody: string) => Promise<any>;
+    loadData: (itemName: string, id: string) => Promise<any>;
+};
+
 export default FormSchemaType;
-export type { DataSchema, ServiceAPI };
+export type { DataSchema, ServiceAPI, ListSchema, ElementContentProps, ElementEditFormProps };

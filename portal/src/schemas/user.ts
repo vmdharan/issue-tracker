@@ -1,8 +1,7 @@
 import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
-import FormSchemaType, { ServiceAPI } from './types';
+import FormSchemaType, { ElementContentProps, ElementEditFormProps, ListSchema, ServiceAPI } from './types';
 import UserService from 'services/user';
-import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -39,7 +38,7 @@ const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
 );
 
 const UserSchemaSubset = UserSchema.omit({ password: true });
-const UserListSchema = Object.keys(UserSchemaSubset.keyof().Values).map(
+const UserListSchema: ListSchema[] = Object.keys(UserSchemaSubset.keyof().Values).map(
     (key: string) => {
         return {
             field: key,
@@ -58,16 +57,18 @@ const UserAPI: ServiceAPI = {
     deleteItem: UserService.DeleteItem,
 };
 
-const UserItemContentProps = {
+
+
+const UserItemContentProps: ElementContentProps = {
     service: UserAPI,
     tag: SCHEMA_TAG,
     tagTitle: SCHEMA_TAG_TITLE,
     columns: UserListSchema
 };
 
-const UserEditFormProps = {
+const UserEditFormProps: ElementEditFormProps = {
     name: SCHEMA_TAG_TITLE,
-    type: 'Edit' as FormVariant,
+    type: 'Edit',
     schema: UserFormSchema,
     data: UserSchema,
     itemName: SCHEMA_TAG,
@@ -75,9 +76,9 @@ const UserEditFormProps = {
     loadData: UserAPI.getItem,
 };
 
-const UserCreateFormProps = {
+const UserCreateFormProps: ElementEditFormProps = {
     ...UserEditFormProps,
-    type: 'Create' as FormVariant,
+    type: 'Create',
     submitData: UserAPI.createItem,
 };
 

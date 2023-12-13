@@ -6,149 +6,46 @@ import MainContent from 'components/organisms/MainContent';
 import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
 import Dashboard from 'components/pages/Dashboard';
 import ErrorPage from 'components/pages/ErrorPage';
-import Tickets from 'components/pages/Tickets';
-import Organisations from 'components/pages/Organisations';
-import TicketCategories from 'components/pages/TicketCategories';
-import TicketSeverities from 'components/pages/TicketSeverities';
-import ProductCategories from 'components/pages/ProductCategories';
-import Products from 'components/pages/Products';
 import Login from 'components/pages/Login';
 import useToken from 'hooks/useToken';
 import CreateEditForm from 'components/organisms/CreateEditForm';
-import { UserCreateFormProps, UserEditFormProps, UserItemContentProps } from 'schemas/user';
 import ItemContent from './components/organisms/ItemContent';
+import { ElementContentProps, ElementEditFormProps } from './schemas/types';
+import { UserCreateFormProps, UserEditFormProps, UserItemContentProps } from 'schemas/user';
+
+const MakeElementRoute = (elementPath: string, contentProps: ElementContentProps | null, createFormProps: ElementEditFormProps | null, editFormProps: ElementEditFormProps | null) => {
+    return {
+        path: elementPath,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '',
+                element: contentProps ? <ItemContent {...contentProps} /> : <ErrorPage />,
+            },
+            {
+                path: 'create',
+                element: createFormProps ? <CreateEditForm {...createFormProps} /> : <ErrorPage />,
+            },
+            {
+                path: 'edit/:id',
+                element: editFormProps ? <CreateEditForm {...editFormProps} /> : <ErrorPage />,
+            },
+        ]
+    };
+}
 
 const router = createBrowserRouter([
     {
         Component: Root,
         children: [
             { path: '/', element: <Dashboard />, errorElement: <ErrorPage /> },
-            {
-                path: '/tickets',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <Tickets />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
-            {
-                path: '/ticket-severities',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <TicketSeverities />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
-            {
-                path: '/ticket-categories',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <TicketCategories />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
-            {
-                path: '/products',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <Products />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
-            {
-                path: '/product-categories',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <ProductCategories />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
-            {
-                path: '/users',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <ItemContent {...UserItemContentProps} />,
-                    },
-                    {
-                        path: 'create',
-                        element: <CreateEditForm {...UserCreateFormProps} />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <CreateEditForm {...UserEditFormProps} />,
-                    },
-                ],
-            },
-            {
-                path: '/organisations',
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        path: '',
-                        element: <Organisations />,
-                    },
-                    {
-                        path: 'create',
-                        element: <ErrorPage />,
-                    },
-                    {
-                        path: 'edit/:id',
-                        element: <ErrorPage />,
-                    },
-                ],
-            },
+            MakeElementRoute('/tickets', null, null, null),
+            MakeElementRoute('/ticket-severities', null, null, null),
+            MakeElementRoute('/ticket-categories', null, null, null),
+            MakeElementRoute('/products', null, null, null),
+            MakeElementRoute('/product-categories', null, null, null),
+            MakeElementRoute('/users', UserItemContentProps, UserCreateFormProps, UserEditFormProps),
+            MakeElementRoute('/organisations', null, null, null),
         ],
     },
 ]);
