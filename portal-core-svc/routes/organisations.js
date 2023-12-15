@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const TicketCategory = require('../models/TicketCategory');
+const Organisation = require('../models/Organisation');
 
-// Get all ticket categories.
+// Get all tickets.
 router.get('/', async (request, response) => {
     try {
-        const ticketCategories = await TicketCategory.find({});
-        if(ticketCategories) {
-            return response.send(ticketCategories);
+        const tickets = await Organisation.find({});
+        if(tickets) {
+            return response.send(tickets);
         }
     } catch (err) {
         console.error(err.message);
@@ -15,12 +15,12 @@ router.get('/', async (request, response) => {
     }
 });
 
-// Get a single ticket category by code.
+// Get a single ticket by code.
 router.get('/:id', async (request, response) => {
     try {
-        const ticketCategory = await TicketCategory.find({_id: request.params.id});
-        if(ticketCategory) {
-            return response.send(ticketCategory);
+        const ticket = await Organisation.find({_id: request.params.id});
+        if(ticket) {
+            return response.send(ticket);
         }
     } catch (err) {
         console.error(err.message);
@@ -28,12 +28,12 @@ router.get('/:id', async (request, response) => {
     }
 });
 
-// Create a new ticket category.
+// Create a new ticket.
 router.post('/', async (request, response) => {
-    const { code, name, description, parentCategoryCode } = request.body;
+    const { code, title, description, creator, assignee, category, severity } = request.body;
     try {
-        let ticketCategory = await TicketCategory.findOne({ code });
-        if(ticketCategory) {
+        let ticket = await Organisation.findOne({ code });
+        if(ticket) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -42,13 +42,16 @@ router.post('/', async (request, response) => {
                 });
         }
 
-        ticketCategory = new TicketCategory({
+        ticket = new Organisation({
             code,
-            name,
+            title,
             description,
-            parentCategoryCode
+            creator,
+            assignee,
+            category, 
+            severity
         });
-        await ticketCategory.save();
+        await ticket.save();
         response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -56,12 +59,12 @@ router.post('/', async (request, response) => {
     }
 });
 
-// Edit an existing ticket category.
+// Edit an existing ticket.
 router.put('/:id', async (request, response) => {
-    const { code, name, description, parentCategoryCode } = request.body;
+    const { code, title, description, creator, assignee, category, severity } = request.body;
     try {
-        let ticketCategory = await TicketCategory.findOne({ _id: request.params.id });
-        if(!ticketCategory) {
+        let ticket = await Organisation.findOne({ _id: request.params.id });
+        if(!ticket) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -70,12 +73,15 @@ router.put('/:id', async (request, response) => {
                 });
         }
 
-        ticketCategory.code = code;
-        ticketCategory.name = name;
-        ticketCategory.description = description;
-        ticketCategory.parentCategoryCode = parentCategoryCode;
+        ticket.code = code;
+        ticket.title = title;
+        ticket.description = description;
+        ticket.creator = creator;
+        ticket.assignee = assignee;
+        ticket.category = category;
+        ticket.severity = severity;
 
-        await ticketCategory.save();
+        await ticket.save();
         response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -83,11 +89,11 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-// Delete an existing ticket category.
+// Delete an existing ticket.
 router.delete('/:id', async (request, response) => {
     try {
-        let ticketCategory = await TicketCategory.findOne({ _id: request.params.id });
-        if(!ticketCategory) {
+        let ticket = await Organisation.findOne({ _id: request.params.id });
+        if(!ticket) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -96,7 +102,7 @@ router.delete('/:id', async (request, response) => {
                 });
         }
 
-        await ticketCategory.deleteOne();
+        await ticket.deleteOne();
         response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);

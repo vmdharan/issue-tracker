@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const TicketCategory = require('../models/TicketCategory');
+const Product = require('../models/Product');
 
-// Get all ticket categories.
+// Get all products.
 router.get('/', async (request, response) => {
     try {
-        const ticketCategories = await TicketCategory.find({});
-        if(ticketCategories) {
-            return response.send(ticketCategories);
+        const products = await Product.find({});
+        if(products) {
+            return response.send(products);
         }
     } catch (err) {
         console.error(err.message);
@@ -15,12 +15,12 @@ router.get('/', async (request, response) => {
     }
 });
 
-// Get a single ticket category by code.
+// Get a single product by code.
 router.get('/:id', async (request, response) => {
     try {
-        const ticketCategory = await TicketCategory.find({_id: request.params.id});
-        if(ticketCategory) {
-            return response.send(ticketCategory);
+        const product = await Product.find({_id: request.params.id});
+        if(product) {
+            return response.send(product);
         }
     } catch (err) {
         console.error(err.message);
@@ -28,12 +28,12 @@ router.get('/:id', async (request, response) => {
     }
 });
 
-// Create a new ticket category.
+// Create a new product.
 router.post('/', async (request, response) => {
-    const { code, name, description, parentCategoryCode } = request.body;
+    const { code, name, description, productCategory } = request.body;
     try {
-        let ticketCategory = await TicketCategory.findOne({ code });
-        if(ticketCategory) {
+        let product = await Product.findOne({ code });
+        if(product) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -42,13 +42,13 @@ router.post('/', async (request, response) => {
                 });
         }
 
-        ticketCategory = new TicketCategory({
+        product = new Product({
             code,
             name,
             description,
-            parentCategoryCode
+            productCategory
         });
-        await ticketCategory.save();
+        await product.save();
         response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -56,12 +56,12 @@ router.post('/', async (request, response) => {
     }
 });
 
-// Edit an existing ticket category.
+// Edit an existing product.
 router.put('/:id', async (request, response) => {
-    const { code, name, description, parentCategoryCode } = request.body;
+    const { code, name, description, productCategory } = request.body;
     try {
-        let ticketCategory = await TicketCategory.findOne({ _id: request.params.id });
-        if(!ticketCategory) {
+        let product = await Product.findOne({ _id: request.params.id });
+        if(!product) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -70,12 +70,12 @@ router.put('/:id', async (request, response) => {
                 });
         }
 
-        ticketCategory.code = code;
-        ticketCategory.name = name;
-        ticketCategory.description = description;
-        ticketCategory.parentCategoryCode = parentCategoryCode;
+        product.code = code;
+        product.name = name;
+        product.description = description;
+        product.productCategory = productCategory;
 
-        await ticketCategory.save();
+        await product.save();
         response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -83,11 +83,11 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-// Delete an existing ticket category.
+// Delete an existing product.
 router.delete('/:id', async (request, response) => {
     try {
-        let ticketCategory = await TicketCategory.findOne({ _id: request.params.id });
-        if(!ticketCategory) {
+        let product = await Product.findOne({ _id: request.params.id });
+        if(!product) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -96,7 +96,7 @@ router.delete('/:id', async (request, response) => {
                 });
         }
 
-        await ticketCategory.deleteOne();
+        await product.deleteOne();
         response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);

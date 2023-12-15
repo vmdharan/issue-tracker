@@ -16,9 +16,9 @@ router.get('/', async (request, response) => {
 });
 
 // Get a single ticket severity by code.
-router.get('/:code', async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
-        const ticketSeverity = await TicketSeverity.find({code: request.params.code});
+        const ticketSeverity = await TicketSeverity.find({_id: request.params.id});
         if(ticketSeverity) {
             return response.send(ticketSeverity);
         }
@@ -56,10 +56,10 @@ router.post('/', async (request, response) => {
 });
 
 // Edit an existing ticket severity.
-router.put('/:code', async (request, response) => {
+router.put('/:id', async (request, response) => {
     const { code, name, description } = request.body;
     try {
-        let ticketSeverity = await TicketSeverity.findOne({ code: request.params.code });
+        let ticketSeverity = await TicketSeverity.findOne({ _id: request.params.id });
         if(!ticketSeverity) {
             return response.status(400)
                 .json({
@@ -82,9 +82,9 @@ router.put('/:code', async (request, response) => {
 });
 
 // Delete an existing ticket severity.
-router.delete('/:code', async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
-        let ticketSeverity = await TicketSeverity.findOne({ code: request.params.code });
+        let ticketSeverity = await TicketSeverity.findOne({ _id: request.params.id });
         if(!ticketSeverity) {
             return response.status(400)
                 .json({

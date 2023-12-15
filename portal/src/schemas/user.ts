@@ -1,6 +1,11 @@
 import { ZodString, z } from 'zod';
 import toSentenceCase from 'helpers/toSentenceCase';
-import FormSchemaType, { ElementContentProps, ElementEditFormProps, ListSchema, ServiceAPI } from './types';
+import FormSchemaType, {
+    ElementContentProps,
+    ElementEditFormProps,
+    ListSchema,
+    ServiceAPI,
+} from './types';
 import UserService from 'services/user';
 
 const MAX_NAME_LENGTH = 32;
@@ -38,16 +43,16 @@ const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
 );
 
 const UserSchemaSubset = UserSchema.omit({ password: true });
-const UserListSchema: ListSchema[] = Object.keys(UserSchemaSubset.keyof().Values).map(
-    (key: string) => {
-        return {
-            field: key,
-            headerName: toSentenceCase(key),
-            editable: false,
-            width: 120,
-        };
-    },
-);
+const UserListSchema: ListSchema[] = Object.keys(
+    UserSchemaSubset.keyof().Values,
+).map((key: string) => {
+    return {
+        field: key,
+        headerName: toSentenceCase(key),
+        editable: false,
+        width: 120,
+    };
+});
 
 const UserAPI: ServiceAPI = {
     createItem: UserService.CreateItem,
@@ -57,13 +62,11 @@ const UserAPI: ServiceAPI = {
     deleteItem: UserService.DeleteItem,
 };
 
-
-
 const UserItemContentProps: ElementContentProps = {
     service: UserAPI,
     tag: SCHEMA_TAG,
     tagTitle: SCHEMA_TAG_TITLE,
-    columns: UserListSchema
+    columns: UserListSchema,
 };
 
 const UserEditFormProps: ElementEditFormProps = {
@@ -83,8 +86,4 @@ const UserCreateFormProps: ElementEditFormProps = {
 };
 
 export default UserSchema;
-export {
-    UserItemContentProps,
-    UserEditFormProps,
-    UserCreateFormProps,
-};
+export { UserItemContentProps, UserEditFormProps, UserCreateFormProps };

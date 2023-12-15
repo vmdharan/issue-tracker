@@ -17,7 +17,7 @@ const ItemContent = (props: ItemContentProps) => {
             setItemList(res);
         };
         getList();
-    }, []);
+    }, [props.tag]);
 
     const handleDelete = async (id: string) => {
         const res = await props.service.deleteItem(props.tag, id);

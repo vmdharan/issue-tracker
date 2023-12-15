@@ -16,9 +16,9 @@ router.get('/', async (request, response) => {
 });
 
 // Get a single ticket by code.
-router.get('/:code', async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
-        const ticket = await Ticket.find({code: request.params.code});
+        const ticket = await Ticket.find({_id: request.params.id});
         if(ticket) {
             return response.send(ticket);
         }
@@ -60,10 +60,10 @@ router.post('/', async (request, response) => {
 });
 
 // Edit an existing ticket.
-router.put('/:code', async (request, response) => {
+router.put('/:id', async (request, response) => {
     const { code, title, description, creator, assignee, category, severity } = request.body;
     try {
-        let ticket = await Ticket.findOne({ code: request.params.code });
+        let ticket = await Ticket.findOne({ _id: request.params.id });
         if(!ticket) {
             return response.status(400)
                 .json({
@@ -90,9 +90,9 @@ router.put('/:code', async (request, response) => {
 });
 
 // Delete an existing ticket.
-router.delete('/:code', async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
-        let ticket = await Ticket.findOne({ code: request.params.code });
+        let ticket = await Ticket.findOne({ _id: request.params.id });
         if(!ticket) {
             return response.status(400)
                 .json({
