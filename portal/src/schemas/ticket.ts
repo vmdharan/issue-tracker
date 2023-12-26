@@ -11,7 +11,7 @@ import CoreService from 'services/core';
 const MAX_TITLE_LENGTH = 128;
 const MAX_DESCRIPTION_LENGTH = 256;
 
-const SCHEMA_TAG = 'Tickets';
+const SCHEMA_TAG = 'tickets';
 const SCHEMA_TAG_TITLE = 'Ticket';
 
 const TicketSchema = z.object({

@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Organisation = require('../models/Organisation');
 
-// Get all tickets.
+// Get all organisations.
 router.get('/', async (request, response) => {
     try {
-        const tickets = await Organisation.find({});
-        if(tickets) {
-            return response.send(tickets);
+        const organisations = await Organisation.find({});
+        if(organisations) {
+            return response.send(organisations);
         }
     } catch (err) {
         console.error(err.message);
@@ -15,12 +15,12 @@ router.get('/', async (request, response) => {
     }
 });
 
-// Get a single ticket by code.
+// Get a single organisation by code.
 router.get('/:id', async (request, response) => {
     try {
-        const ticket = await Organisation.find({_id: request.params.id});
-        if(ticket) {
-            return response.send(ticket);
+        const organisation = await Organisation.find({_id: request.params.id});
+        if(organisation) {
+            return response.send(organisation);
         }
     } catch (err) {
         console.error(err.message);
@@ -28,12 +28,12 @@ router.get('/:id', async (request, response) => {
     }
 });
 
-// Create a new ticket.
+// Create a new organisation.
 router.post('/', async (request, response) => {
-    const { code, title, description, creator, assignee, category, severity } = request.body;
+    const { code, name, description } = request.body;
     try {
-        let ticket = await Organisation.findOne({ code });
-        if(ticket) {
+        let organisation = await Organisation.findOne({ code });
+        if(organisation) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -42,16 +42,12 @@ router.post('/', async (request, response) => {
                 });
         }
 
-        ticket = new Organisation({
+        organisation = new Organisation({
             code,
-            title,
-            description,
-            creator,
-            assignee,
-            category, 
-            severity
+            name,
+            description
         });
-        await ticket.save();
+        await organisation.save();
         response.end(JSON.stringify({ message: 'Saved successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -59,12 +55,12 @@ router.post('/', async (request, response) => {
     }
 });
 
-// Edit an existing ticket.
+// Edit an existing organisation.
 router.put('/:id', async (request, response) => {
-    const { code, title, description, creator, assignee, category, severity } = request.body;
+    const { code, name, description } = request.body;
     try {
-        let ticket = await Organisation.findOne({ _id: request.params.id });
-        if(!ticket) {
+        let organisation = await Organisation.findOne({ _id: request.params.id });
+        if(!organisation) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -73,15 +69,11 @@ router.put('/:id', async (request, response) => {
                 });
         }
 
-        ticket.code = code;
-        ticket.title = title;
-        ticket.description = description;
-        ticket.creator = creator;
-        ticket.assignee = assignee;
-        ticket.category = category;
-        ticket.severity = severity;
+        organisation.code = code;
+        organisation.name = name;
+        organisation.description = description;
 
-        await ticket.save();
+        await organisation.save();
         response.end(JSON.stringify({ message: 'Updated successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
@@ -89,11 +81,11 @@ router.put('/:id', async (request, response) => {
     }
 });
 
-// Delete an existing ticket.
+// Delete an existing organisation.
 router.delete('/:id', async (request, response) => {
     try {
-        let ticket = await Organisation.findOne({ _id: request.params.id });
-        if(!ticket) {
+        let organisation = await Organisation.findOne({ _id: request.params.id });
+        if(!organisation) {
             return response.status(400)
                 .json({
                     errors: [{
@@ -102,7 +94,7 @@ router.delete('/:id', async (request, response) => {
                 });
         }
 
-        await ticket.deleteOne();
+        await organisation.deleteOne();
         response.end(JSON.stringify({ message: 'Deleted successfully.', success: true }));
     } catch (err) {
         console.error(err.message);
