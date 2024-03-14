@@ -1,0 +1,4 @@
+{
+    "CORE_HOST_URI": "http://localhost:3000/",
+    "USER_HOST_URI": "http://localhost:3001/"
+}
