@@ -69,6 +69,7 @@ const TicketCategoryAPI: ServiceAPI = {
     createItem: CoreService.CreateItem,
     getItem: CoreService.GetItem,
     getItems: CoreService.GetItems,
+    getItemsForDropdown: CoreService.GetItemsForDropdown,
     editItem: CoreService.EditItem,
     deleteItem: CoreService.DeleteItem,
 };
@@ -89,7 +90,7 @@ const TicketCategoryEditFormProps: ElementEditFormProps = {
     submitData: TicketCategoryAPI.editItem,
     loadData: TicketCategoryAPI.getItem,
     loadDropdowns: [
-        { name: 'ticket-categories', selector: (entity) => CoreService.GetItems(entity) },
+        { name: 'ticket-categories', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
     ]
 };
 

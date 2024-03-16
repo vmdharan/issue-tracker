@@ -24,6 +24,18 @@ const GetItems = async (itemName: string) => {
     return response;
 };
 
+const GetItemsForDropdown = async (itemName: string) => {
+    const response = await fetch(HOST_URI + itemName + '/dd')
+        .then((response) => {
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    return response;
+};
+
 const CreateItem = async (itemName: string, id: string, postBody: string) => {
     const postRequest = (postBody: string) => ({
         method: 'POST',
@@ -63,6 +75,7 @@ const DeleteItem = async (itemName: string, id: string) => {
 export default {
     GetItem,
     GetItems,
+    GetItemsForDropdown,
     CreateItem,
     EditItem,
     DeleteItem,

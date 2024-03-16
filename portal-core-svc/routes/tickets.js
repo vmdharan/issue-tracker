@@ -15,6 +15,25 @@ router.get('/', async (request, response) => {
     }
 });
 
+// Get all tickets for dropdown.
+router.get('/dd', async (request, response) => {
+    try {
+        const tickets = await Ticket.aggregate([
+            { "$project": {
+                "name": "$title",
+                "value": "$code",
+                "_id": 0
+            }}
+        ]);
+        if(tickets) {
+            return response.send(tickets);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
 // Get a single ticket by code.
 router.get('/:id', async (request, response) => {
     try {

@@ -15,6 +15,25 @@ router.get('/', async (request, response) => {
     }
 });
 
+// Get all users for dropdown.
+router.get('/dd', async (request, response) => {
+    try {
+        const users = await User.aggregate([
+            { "$project": {
+                "name": { $concat: ["$firstName", " ", "$lastName"] },
+                "value": "$userName",
+                "_id": 0
+            }}
+        ]);
+        if(users) {
+            return response.send(users);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
 // Get a single user by id.
 router.get('/:id', async (request, response) => {
     try {

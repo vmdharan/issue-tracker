@@ -60,6 +60,7 @@ const OrganisationAPI: ServiceAPI = {
     createItem: CoreService.CreateItem,
     getItem: CoreService.GetItem,
     getItems: CoreService.GetItems,
+    getItemsForDropdown: CoreService.GetItemsForDropdown,
     editItem: CoreService.EditItem,
     deleteItem: CoreService.DeleteItem,
 };

@@ -15,6 +15,25 @@ router.get('/', async (request, response) => {
     }
 });
 
+// Get all product categories for dropdown.
+router.get('/dd', async (request, response) => {
+    try {
+        const productCategories = await ProductCategory.aggregate([
+            { "$project": {
+                "name": "$name",
+                "value": "$code",
+                "_id": 0
+            }}
+        ]);
+        if(productCategories) {
+            return response.send(productCategories);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
 // Get a single product category by code.
 router.get('/:id', async (request, response) => {
     try {

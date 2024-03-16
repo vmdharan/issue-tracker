@@ -20,6 +20,7 @@ type ServiceAPI = {
     createItem: (itemName: string, id: string, postBody: string) => Promise<any>;
     getItem: (itemName: string, id: string) => Promise<any>;
     getItems: (itemName: string) => Promise<any>;
+    getItemsForDropdown: (itemName: string) => Promise<any>;
     editItem: (itemName: string, id: string, postBody: string) => Promise<any>;
     deleteItem: (itemName: string, id: string) => Promise<any>;
 };

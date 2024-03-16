@@ -15,6 +15,26 @@ router.get('/', async (request, response) => {
     }
 });
 
+// Get all ticket severities for dropdown.
+router.get('/dd', async (request, response) => {
+    try {
+        const ticketSeverities = await TicketSeverity.aggregate([
+            { "$project": {
+                "name": "$name",
+                "value": "$code",
+                "_id": 0
+            }}
+        ]);
+        if(ticketSeverities) {
+            return response.send(ticketSeverities);
+        }
+    } catch (err) {
+        console.error(err.message);
+        response.status(500).send('Internal Server Error');
+    }
+});
+
+
 // Get a single ticket severity by code.
 router.get('/:id', async (request, response) => {
     try {

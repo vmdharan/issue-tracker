@@ -69,6 +69,7 @@ const ProductAPI: ServiceAPI = {
     createItem: CoreService.CreateItem,
     getItem: CoreService.GetItem,
     getItems: CoreService.GetItems,
+    getItemsForDropdown: CoreService.GetItemsForDropdown,
     editItem: CoreService.EditItem,
     deleteItem: CoreService.DeleteItem,
 };
@@ -89,7 +90,7 @@ const ProductEditFormProps: ElementEditFormProps = {
     submitData: ProductAPI.editItem,
     loadData: ProductAPI.getItem,
     loadDropdowns: [
-        { name: 'product-categories', selector: (entity) => CoreService.GetItems(entity) },
+        { name: 'product-categories', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
     ]
 };
 

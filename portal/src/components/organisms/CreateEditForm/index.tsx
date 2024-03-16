@@ -120,7 +120,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                         sx={{ margin: '8px', display: 'block' }}
                                     >
                                         {dropdownData && s.entity ? dropdownData.find(f => f.entity == s.entity)?.data?.map((m: any) => (
-                                            <MenuItem key={`{${s.entity}_mi_${m.code}`} value={m.code}>{m.name}</MenuItem>
+                                            <MenuItem key={`{${s.entity}_mi_${m.value}`} value={m.value}>{m.name}</MenuItem>
                                         )) : <></>}
                                     </Select>
                                 </FormControl>

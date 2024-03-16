@@ -67,6 +67,7 @@ const UserAPI: ServiceAPI = {
     createItem: UserService.CreateItem,
     getItem: UserService.GetItem,
     getItems: UserService.GetItems,
+    getItemsForDropdown: UserService.GetItemsForDropdown,
     editItem: UserService.EditItem,
     deleteItem: UserService.DeleteItem,
 };
@@ -87,7 +88,7 @@ const UserEditFormProps: ElementEditFormProps = {
     submitData: UserAPI.editItem,
     loadData: UserAPI.getItem,
     loadDropdowns: [
-        { name: 'organisations', selector: (entity) => CoreService.GetItems(entity)}
+        { name: 'organisations', selector: (entity) => CoreService.GetItemsForDropdown(entity)}
     ]
 };
 
