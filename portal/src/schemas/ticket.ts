@@ -7,6 +7,7 @@ import FormSchemaType, {
     ServiceAPI,
 } from './types';
 import CoreService from 'services/core';
+import UserService from 'services/user';
 
 const MAX_TITLE_LENGTH = 128;
 const MAX_DESCRIPTION_LENGTH = 256;
@@ -26,7 +27,39 @@ const TicketSchema = z.object({
 
 const TicketFormSchema: FormSchemaType[] = Object.entries(TicketSchema.shape).map(
     (entry) => {
-        if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
+        if(entry[0] == 'creator') {
+            return {
+                name: entry[0],
+                type: 'Select',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+                entity: 'users',
+            }
+        }
+        else if(entry[0] == 'assignee') {
+            return {
+                name: entry[0],
+                type: 'Select',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+                entity: 'users',
+            }
+        }
+        else if(entry[0] == 'category') {
+            return {
+                name: entry[0],
+                type: 'Select',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+                entity: 'ticket-categories',
+            }
+        }
+        else if(entry[0] == 'severity') {
+            return {
+                name: entry[0],
+                type: 'Select',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+                entity: 'ticket-severities',
+            }
+        }
+        else if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
             return {
                 name: entry[0],
                 type: 'TextArea',
@@ -83,6 +116,11 @@ const TicketEditFormProps: ElementEditFormProps = {
     itemName: SCHEMA_TAG,
     submitData: TicketAPI.editItem,
     loadData: TicketAPI.getItem,
+    loadDropdowns: [
+        { name: 'users', selector: () => UserService.GetItems('users') },
+        { name: 'ticket-categories', selector: (entity) => CoreService.GetItems(entity) },
+        { name: 'ticket-severities', selector: (entity) => CoreService.GetItems(entity) },
+    ]
 };
 
 const TicketCreateFormProps: ElementEditFormProps = {

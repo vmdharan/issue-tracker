@@ -27,10 +27,12 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
     }, []);
 
     useEffect(() => {
+        setDropdownData([]);
         const fillDropdowns = async () => props.loadDropdowns?.forEach(f => {
             getDropdownData(f.name);
         });
         fillDropdowns();
+        console.log(dropdownData);
     }, [props.loadDropdowns]);
 
     const getDropdownData = async (entity: string) => {
@@ -40,7 +42,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
         if(result) {
             setDropdownData(val => [
                 {entity, data: result},
-                ...dropdownData.filter(f => f[entity] != entity),
+                ...val.filter(f => f[entity] != entity),
             ]);
         }
     };
@@ -118,7 +120,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                         sx={{ margin: '8px', display: 'block' }}
                                     >
                                         {dropdownData && s.entity ? dropdownData.find(f => f.entity == s.entity)?.data?.map((m: any) => (
-                                            <MenuItem key={m.code} value={m.code}>{m.name}</MenuItem>
+                                            <MenuItem key={`{${s.entity}_mi_${m.code}`} value={m.code}>{m.name}</MenuItem>
                                         )) : <></>}
                                     </Select>
                                 </FormControl>
