@@ -24,22 +24,23 @@ const TicketCategorySchema = z.object({
 const TicketCategoryFormSchema: FormSchemaType[] = Object.entries(
     TicketCategorySchema.shape,
 ).map((entry) => {
-    if(entry[0] == 'parentCategoryCode') {
+    if (entry[0] == 'parentCategoryCode') {
         return {
             name: entry[0],
             type: 'Select',
             checks: entry[1]?._def.checks.filter((f) => f != undefined),
             entity: 'ticket-categories',
-        }
-    }
-    else if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
+        };
+    } else if (
+        entry[1] instanceof ZodString &&
+        entry[1].maxLength == MAX_DESCRIPTION_LENGTH
+    ) {
         return {
             name: entry[0],
             type: 'TextArea',
             checks: entry[1]?._def.checks.filter((f) => f != undefined),
         };
-    }
-    else if (entry[1] instanceof ZodString) {
+    } else if (entry[1] instanceof ZodString) {
         return {
             name: entry[0],
             type: 'TextField',
@@ -90,8 +91,11 @@ const TicketCategoryEditFormProps: ElementEditFormProps = {
     submitData: TicketCategoryAPI.editItem,
     loadData: TicketCategoryAPI.getItem,
     loadDropdowns: [
-        { name: 'ticket-categories', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
-    ]
+        {
+            name: 'ticket-categories',
+            selector: (entity) => CoreService.GetItemsForDropdown(entity),
+        },
+    ],
 };
 
 const TicketCategoryCreateFormProps: ElementEditFormProps = {

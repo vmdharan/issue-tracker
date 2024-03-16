@@ -1,5 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import FormSchemaType, { DataSchema, ElementEditFormDropdownProps } from 'schemas/types';
+import FormSchemaType, {
+    DataSchema,
+    ElementEditFormDropdownProps,
+} from 'schemas/types';
 
 type CreateEditFormPropsType = {
     data: DataSchema;

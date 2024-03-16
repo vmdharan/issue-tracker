@@ -48,15 +48,14 @@ const DataTable = (props: DataTableProps) => {
                                     </TableCell>
                                 ))}
                                 <TableCell align="center">
-                                    <Button 
-                                        href={`/${props.tag}/edit/${row._id}`}>
+                                    <Button href={`/${props.tag}/edit/${row._id}`}>
                                         Edit
                                     </Button>
                                 </TableCell>
                                 <TableCell align="center">
                                     <Button
-                                        variant='contained'
-                                        color='primary'
+                                        variant="contained"
+                                        color="primary"
                                         onClick={() => props.confirmDelete(row._id)}
                                     >
                                         Delete

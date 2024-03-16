@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FormEvent, useEffect, useState } from 'react';
 import { CreateEditFormPropsType } from './types';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -29,21 +30,23 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
 
     useEffect(() => {
         setDropdownData([]);
-        const fillDropdowns = async () => props.loadDropdowns?.forEach(f => {
-            getDropdownData(f.name);
-        });
+        const fillDropdowns = async () =>
+            props.loadDropdowns?.forEach((f) => {
+                getDropdownData(f.name);
+            });
         fillDropdowns();
         console.log(dropdownData);
     }, [props.loadDropdowns]);
 
     const getDropdownData = async (entity: string) => {
-        const result = await props.loadDropdowns?.filter(f => f.name == entity)[0]
+        const result = await props.loadDropdowns
+            ?.filter((f) => f.name == entity)[0]
             .selector(entity)
-            .then(res => res);
-        if(result) {
-            setDropdownData(val => [
-                {entity, data: result},
-                ...val.filter(f => f[entity] != entity),
+            .then((res) => res);
+        if (result) {
+            setDropdownData((val) => [
+                { entity, data: result },
+                ...val.filter((f) => f[entity] != entity),
             ]);
         }
     };
@@ -67,12 +70,19 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
 
     const handleSelectChange = (e: SelectChangeEvent<any>, name: string) => {
         setKeyValue(name, e.target.value, data);
-    }
+    };
 
     return (
-        <Box sx={{ padding: '0 18px 0 0', maxWidth: '480px', maxHeight: '80vh', overflowX: 'hidden', overflowY: 'auto' }}>
+        <Box
+            sx={{
+                padding: '0 18px 0 0',
+                maxHeight: '80vh',
+                overflowX: 'hidden',
+                overflowY: 'auto',
+            }}
+        >
             <h1>{title}</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} style={{ maxWidth: '480px' }}>
                 {props &&
                     props.schema.map((s) => {
                         if (s.type == 'TextField') {
@@ -89,8 +99,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                     sx={{ margin: '8px', display: 'block' }}
                                 />
                             );
-                        }
-                        else if (s.type == 'TextArea') {
+                        } else if (s.type == 'TextArea') {
                             return (
                                 <TextField
                                     label={toSentenceCase(s.name)}
@@ -106,26 +115,39 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                     sx={{ margin: '8px', display: 'block' }}
                                 />
                             );
-                        }
-                        else if (s.type == 'Select') {
+                        } else if (s.type == 'Select') {
                             return (
                                 <FormControl key={`fc_${s.name}`} fullWidth>
-                                    <InputLabel id={`selectLabel_${s.name}`}>{toSentenceCase(s.name)}</InputLabel>
+                                    <InputLabel id={`selectLabel_${s.name}`}>
+                                        {toSentenceCase(s.name)}
+                                    </InputLabel>
                                     <Select
                                         fullWidth
                                         labelId={`selectLabel_${s.name}`}
                                         id={`select_${s.name}`}
                                         label={toSentenceCase(s.name)}
                                         value={getKeyValue(s.name, data)}
-                                        onChange={(e) => handleSelectChange(e, s.name)}
+                                        onChange={(e) =>
+                                            handleSelectChange(e, s.name)
+                                        }
                                         sx={{ margin: '8px', display: 'block' }}
                                     >
-                                        {dropdownData && s.entity ? dropdownData.find(f => f.entity == s.entity)?.data?.map((m: any) => (
-                                            <MenuItem key={`{${s.entity}_mi_${m.value}`} value={m.value}>{m.name}</MenuItem>
-                                        )) : <></>}
+                                        {dropdownData && s.entity ? (
+                                            dropdownData
+                                                .find((f) => f.entity == s.entity)
+                                                ?.data?.map((m: any) => (
+                                                    <MenuItem
+                                                        key={`{${s.entity}_mi_${m.value}`}
+                                                        value={m.value}
+                                                    >
+                                                        {m.name}
+                                                    </MenuItem>
+                                                ))
+                                        ) : (
+                                            <></>
+                                        )}
                                     </Select>
                                 </FormControl>
-                                
                             );
                         }
 

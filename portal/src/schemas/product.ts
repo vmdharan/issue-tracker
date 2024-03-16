@@ -23,22 +23,23 @@ const ProductSchema = z.object({
 
 const ProductFormSchema: FormSchemaType[] = Object.entries(ProductSchema.shape).map(
     (entry) => {
-        if(entry[0] == 'productCategory') {
+        if (entry[0] == 'productCategory') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'product-categories',
-            }
-        }
-        else if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
+            };
+        } else if (
+            entry[1] instanceof ZodString &&
+            entry[1].maxLength == MAX_DESCRIPTION_LENGTH
+        ) {
             return {
                 name: entry[0],
                 type: 'TextArea',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
             };
-        }
-        else if (entry[1] instanceof ZodString) {
+        } else if (entry[1] instanceof ZodString) {
             return {
                 name: entry[0],
                 type: 'TextField',
@@ -90,8 +91,11 @@ const ProductEditFormProps: ElementEditFormProps = {
     submitData: ProductAPI.editItem,
     loadData: ProductAPI.getItem,
     loadDropdowns: [
-        { name: 'product-categories', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
-    ]
+        {
+            name: 'product-categories',
+            selector: (entity) => CoreService.GetItemsForDropdown(entity),
+        },
+    ],
 };
 
 const ProductCreateFormProps: ElementEditFormProps = {

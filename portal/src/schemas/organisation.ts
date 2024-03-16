@@ -23,14 +23,16 @@ const OrganisationSchema = z.object({
 const OrganisationFormSchema: FormSchemaType[] = Object.entries(
     OrganisationSchema.shape,
 ).map((entry) => {
-    if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
+    if (
+        entry[1] instanceof ZodString &&
+        entry[1].maxLength == MAX_DESCRIPTION_LENGTH
+    ) {
         return {
             name: entry[0],
             type: 'TextArea',
             checks: entry[1]?._def.checks.filter((f) => f != undefined),
         };
-    }
-    else if (entry[1] instanceof ZodString) {
+    } else if (entry[1] instanceof ZodString) {
         return {
             name: entry[0],
             type: 'TextField',

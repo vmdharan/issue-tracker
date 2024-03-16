@@ -28,15 +28,14 @@ const UserSchema = z.object({
 
 const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
     (entry) => {
-        if(entry[0] == 'organisationCode') {
+        if (entry[0] == 'organisationCode') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'organisations',
-            }
-        }
-        else if (entry[1] instanceof ZodString) {
+            };
+        } else if (entry[1] instanceof ZodString) {
             return {
                 name: entry[0],
                 type: 'TextField',
@@ -88,8 +87,11 @@ const UserEditFormProps: ElementEditFormProps = {
     submitData: UserAPI.editItem,
     loadData: UserAPI.getItem,
     loadDropdowns: [
-        { name: 'organisations', selector: (entity) => CoreService.GetItemsForDropdown(entity)}
-    ]
+        {
+            name: 'organisations',
+            selector: (entity) => CoreService.GetItemsForDropdown(entity),
+        },
+    ],
 };
 
 const UserCreateFormProps: ElementEditFormProps = {

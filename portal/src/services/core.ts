@@ -55,7 +55,10 @@ const EditItem = async (itemName: string, id: string, postBody: string) => {
         headers: { 'Content-Type': 'application/json' },
         body: postBody,
     });
-    const putResult = await fetch(HOST_URI + itemName + '/' + id, putRequest(postBody))
+    const putResult = await fetch(
+        HOST_URI + itemName + '/' + id,
+        putRequest(postBody),
+    )
         .then((res) => res.json())
         .catch((err) => console.log(err));
 

@@ -27,46 +27,44 @@ const TicketSchema = z.object({
 
 const TicketFormSchema: FormSchemaType[] = Object.entries(TicketSchema.shape).map(
     (entry) => {
-        if(entry[0] == 'creator') {
+        if (entry[0] == 'creator') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'users',
-            }
-        }
-        else if(entry[0] == 'assignee') {
+            };
+        } else if (entry[0] == 'assignee') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'users',
-            }
-        }
-        else if(entry[0] == 'category') {
+            };
+        } else if (entry[0] == 'category') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'ticket-categories',
-            }
-        }
-        else if(entry[0] == 'severity') {
+            };
+        } else if (entry[0] == 'severity') {
             return {
                 name: entry[0],
                 type: 'Select',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
                 entity: 'ticket-severities',
-            }
-        }
-        else if (entry[1] instanceof ZodString && entry[1].maxLength == MAX_DESCRIPTION_LENGTH ) {
+            };
+        } else if (
+            entry[1] instanceof ZodString &&
+            entry[1].maxLength == MAX_DESCRIPTION_LENGTH
+        ) {
             return {
                 name: entry[0],
                 type: 'TextArea',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
             };
-        }
-        else if (entry[1] instanceof ZodString) {
+        } else if (entry[1] instanceof ZodString) {
             return {
                 name: entry[0],
                 type: 'TextField',
@@ -119,9 +117,15 @@ const TicketEditFormProps: ElementEditFormProps = {
     loadData: TicketAPI.getItem,
     loadDropdowns: [
         { name: 'users', selector: () => UserService.GetItemsForDropdown('users') },
-        { name: 'ticket-categories', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
-        { name: 'ticket-severities', selector: (entity) => CoreService.GetItemsForDropdown(entity) },
-    ]
+        {
+            name: 'ticket-categories',
+            selector: (entity) => CoreService.GetItemsForDropdown(entity),
+        },
+        {
+            name: 'ticket-severities',
+            selector: (entity) => CoreService.GetItemsForDropdown(entity),
+        },
+    ],
 };
 
 const TicketCreateFormProps: ElementEditFormProps = {
