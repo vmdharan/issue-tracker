@@ -30,14 +30,14 @@ const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
         if (entry[1] instanceof ZodString) {
             return {
                 name: entry[0],
-                type: 'TextBox',
+                type: 'TextField',
                 checks: entry[1]?._def.checks.filter((f) => f != undefined),
             };
         }
 
         return {
             name: entry[0],
-            type: 'TextBox',
+            type: 'TextField',
         };
     },
 );

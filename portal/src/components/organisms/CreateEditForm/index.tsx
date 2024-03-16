@@ -39,12 +39,12 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
     };
 
     return (
-        <Box sx={{ width: '480px' }}>
+        <Box sx={{padding: '0 18px 0 0', maxWidth: '480px', maxHeight: '80vh', overflowX: 'hidden', overflowY: 'auto' }}>
             <h1>{title}</h1>
             <form onSubmit={handleSubmit}>
                 {props &&
                     props.schema.map((s) => {
-                        if (s.type == 'TextBox') {
+                        if (s.type == 'TextField') {
                             return (
                                 <TextField
                                     label={s.name}
@@ -55,6 +55,23 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                     }
                                     value={getKeyValue(s.name, data)}
                                     fullWidth
+                                    sx={{ margin: '8px', display: 'block' }}
+                                />
+                            );
+                        }
+                        else if (s.type == 'TextArea') {
+                            return (
+                                <TextField
+                                    label={s.name}
+                                    name={s.name}
+                                    key={s.name}
+                                    onChange={(e) =>
+                                        setKeyValue(s.name, e.target.value, data)
+                                    }
+                                    value={getKeyValue(s.name, data)}
+                                    fullWidth
+                                    multiline
+                                    minRows={4}
                                     sx={{ margin: '8px', display: 'block' }}
                                 />
                             );

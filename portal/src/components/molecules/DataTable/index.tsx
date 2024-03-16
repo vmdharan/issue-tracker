@@ -9,6 +9,7 @@ import Table, {
 } from 'components/atoms/Table';
 import { DataTableProps } from './types';
 import * as styles from './index.module.scss';
+import Button from 'components/atoms/Button';
 
 const DataTable = (props: DataTableProps) => {
     return (
@@ -47,16 +48,19 @@ const DataTable = (props: DataTableProps) => {
                                     </TableCell>
                                 ))}
                                 <TableCell align="center">
-                                    <a href={`/${props.tag}/edit/${row._id}`}>
+                                    <Button 
+                                        href={`/${props.tag}/edit/${row._id}`}>
                                         Edit
-                                    </a>
+                                    </Button>
                                 </TableCell>
                                 <TableCell align="center">
-                                    <button
+                                    <Button
+                                        variant='contained'
+                                        color='primary'
                                         onClick={() => props.confirmDelete(row._id)}
                                     >
                                         Delete
-                                    </button>
+                                    </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
