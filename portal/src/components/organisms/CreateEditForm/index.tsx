@@ -8,6 +8,7 @@ import TextField from 'components/atoms/TextField';
 import Select from 'components/atoms/Select';
 import MenuItem from 'components/atoms/MenuItem';
 import { FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
+import toSentenceCase from 'helpers/toSentenceCase';
 
 const CreateEditForm = (props: CreateEditFormPropsType) => {
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                         if (s.type == 'TextField') {
                             return (
                                 <TextField
-                                    label={s.name}
+                                    label={toSentenceCase(s.name)}
                                     name={s.name}
                                     key={s.name}
                                     onChange={(e) =>
@@ -92,7 +93,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                         else if (s.type == 'TextArea') {
                             return (
                                 <TextField
-                                    label={s.name}
+                                    label={toSentenceCase(s.name)}
                                     name={s.name}
                                     key={s.name}
                                     onChange={(e) =>
@@ -109,12 +110,12 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                         else if (s.type == 'Select') {
                             return (
                                 <FormControl key={`fc_${s.name}`} fullWidth>
-                                    <InputLabel id={`selectLabel_${s.name}`}>{s.name}</InputLabel>
+                                    <InputLabel id={`selectLabel_${s.name}`}>{toSentenceCase(s.name)}</InputLabel>
                                     <Select
                                         fullWidth
                                         labelId={`selectLabel_${s.name}`}
                                         id={`select_${s.name}`}
-                                        label={s.name}
+                                        label={toSentenceCase(s.name)}
                                         value={getKeyValue(s.name, data)}
                                         onChange={(e) => handleSelectChange(e, s.name)}
                                         sx={{ margin: '8px', display: 'block' }}
@@ -130,7 +131,7 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
 
                         return (
                             <TextField
-                                label={s.name}
+                                label={toSentenceCase(s.name)}
                                 name={s.name}
                                 key={s.name}
                                 onChange={(e) =>
