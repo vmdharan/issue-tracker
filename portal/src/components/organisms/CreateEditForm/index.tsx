@@ -1,13 +1,18 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { CreateEditFormPropsType } from './types';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import Button from 'components/atoms/Button';
 import Box from 'components/atoms/Box';
 import TextField from 'components/atoms/TextField';
-import { useNavigate, useParams } from 'react-router-dom';
+import Select from 'components/atoms/Select';
+import MenuItem from 'components/atoms/MenuItem';
+import { FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 
 const CreateEditForm = (props: CreateEditFormPropsType) => {
     const navigate = useNavigate();
     const [data, setData] = useState({});
+    const [dropdownData, setDropdownData] = useState<any[]>([]);
     const { id } = useParams();
     const title = `${props.type} ${props.name}`;
 
@@ -20,6 +25,25 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
         };
         fetchData();
     }, []);
+
+    useEffect(() => {
+        const fillDropdowns = async () => props.loadDropdowns?.forEach(f => {
+            getDropdownData(f.name);
+        });
+        fillDropdowns();
+    }, [props.loadDropdowns]);
+
+    const getDropdownData = async (entity: string) => {
+        const result = await props.loadDropdowns?.filter(f => f.name == entity)[0]
+            .selector(entity)
+            .then(res => res);
+        if(result) {
+            setDropdownData(val => [
+                {entity, data: result},
+                ...dropdownData.filter(f => f[entity] != entity),
+            ]);
+        }
+    };
 
     const getKeyValue = (key: string, obj: object) =>
         obj ? Object.entries(obj).find((f) => f[0] === key)?.[1] ?? '' : '';
@@ -38,8 +62,12 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
         setData({ ...obj, [key]: value });
     };
 
+    const handleSelectChange = (e: SelectChangeEvent<any>, name: string) => {
+        setKeyValue(name, e.target.value, data);
+    }
+
     return (
-        <Box sx={{padding: '0 18px 0 0', maxWidth: '480px', maxHeight: '80vh', overflowX: 'hidden', overflowY: 'auto' }}>
+        <Box sx={{ padding: '0 18px 0 0', maxWidth: '480px', maxHeight: '80vh', overflowX: 'hidden', overflowY: 'auto' }}>
             <h1>{title}</h1>
             <form onSubmit={handleSubmit}>
                 {props &&
@@ -74,6 +102,27 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                                     minRows={4}
                                     sx={{ margin: '8px', display: 'block' }}
                                 />
+                            );
+                        }
+                        else if (s.type == 'Select') {
+                            return (
+                                <FormControl key={`fc_${s.name}`} fullWidth>
+                                    <InputLabel id={`selectLabel_${s.name}`}>{s.name}</InputLabel>
+                                    <Select
+                                        fullWidth
+                                        labelId={`selectLabel_${s.name}`}
+                                        id={`select_${s.name}`}
+                                        label={s.name}
+                                        value={getKeyValue(s.name, data)}
+                                        onChange={(e) => handleSelectChange(e, s.name)}
+                                        sx={{ margin: '8px', display: 'block' }}
+                                    >
+                                        {dropdownData && s.entity ? dropdownData.find(f => f.entity == s.entity)?.data?.map((m: any) => (
+                                            <MenuItem key={m.code} value={m.code}>{m.name}</MenuItem>
+                                        )) : <></>}
+                                    </Select>
+                                </FormControl>
+                                
                             );
                         }
 

@@ -7,6 +7,7 @@ import FormSchemaType, {
     ServiceAPI,
 } from './types';
 import UserService from 'services/user';
+import CoreService from 'services/core';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -27,7 +28,15 @@ const UserSchema = z.object({
 
 const UserFormSchema: FormSchemaType[] = Object.entries(UserSchema.shape).map(
     (entry) => {
-        if (entry[1] instanceof ZodString) {
+        if(entry[0] == 'organisationCode') {
+            return {
+                name: entry[0],
+                type: 'Select',
+                checks: entry[1]?._def.checks.filter((f) => f != undefined),
+                entity: 'organisations',
+            }
+        }
+        else if (entry[1] instanceof ZodString) {
             return {
                 name: entry[0],
                 type: 'TextField',
@@ -77,6 +86,9 @@ const UserEditFormProps: ElementEditFormProps = {
     itemName: SCHEMA_TAG,
     submitData: UserAPI.editItem,
     loadData: UserAPI.getItem,
+    loadDropdowns: [
+        { name: 'organisations', selector: (entity) => CoreService.GetItems(entity)}
+    ]
 };
 
 const UserCreateFormProps: ElementEditFormProps = {
