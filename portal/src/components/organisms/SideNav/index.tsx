@@ -23,7 +23,7 @@ const SideNav = () => {
                 {links &&
                     links.map((link) => (
                         <li className={styles['side-nav-li']} key={link.target}>
-                            <Link to={link.target}>{link.label}</Link>
+                            <Link to={link.target} className={styles['side-nav-link']}>{link.label}</Link>
                         </li>
                     ))}
             </ul>
