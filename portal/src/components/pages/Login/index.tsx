@@ -23,10 +23,26 @@ const Login = ({ setToken }: LoginPropsType) => {
 
     return (
         <>
-            <Grid container spacing={0} direction="column"
-                alignItems="center" justifyContent="center"
-                sx={{ minHeight: '100vh', backgroundImage: `url(${loginBackgroundImage})` }}>
-                <Grid item xs={4} sx={{ border: '1px solid black', padding: '8px', backgroundColor: 'white' }}>
+            <Grid
+                container
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justifyContent="center"
+                sx={{
+                    minHeight: '100vh',
+                    backgroundImage: `url(${loginBackgroundImage})`,
+                }}
+            >
+                <Grid
+                    item
+                    xs={4}
+                    sx={{
+                        border: '1px solid black',
+                        padding: '8px',
+                        backgroundColor: 'white',
+                    }}
+                >
                     <Typography variant="h4">Log in to the portal</Typography>
                     <form onSubmit={handleLogin} style={{ minWidth: '360px' }}>
                         <TextField
@@ -45,7 +61,12 @@ const Login = ({ setToken }: LoginPropsType) => {
                             onChange={(e) => setPassword(e.target.value)}
                             sx={{ marginTop: '1.5rem', display: 'block' }}
                         />
-                        <Button sx={{ marginTop: '1.5rem', float: 'right' }} color="primary" variant="contained" type="submit">
+                        <Button
+                            sx={{ marginTop: '1.5rem', float: 'right' }}
+                            color="primary"
+                            variant="contained"
+                            type="submit"
+                        >
                             Log in
                         </Button>
                     </form>

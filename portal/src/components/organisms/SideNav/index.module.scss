@@ -1,0 +1,21 @@
+.nav {
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #001122, #88ddbb);
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.side-nav-ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.side-nav-li {
+    padding: 8px;
+}
+
+.side-nav-li:hover {
+    background-color: yellow;
+}
