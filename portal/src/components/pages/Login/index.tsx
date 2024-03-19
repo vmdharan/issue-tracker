@@ -4,6 +4,8 @@ import UserService from 'services/user';
 import Typography from 'components/atoms/Typography';
 import Button from 'components/atoms/Button';
 import TextField from 'components/atoms/TextField';
+import Grid from 'components/atoms/Grid';
+import loginBackgroundImage from '../../../assets/login_bg.jpg';
 
 const Login = ({ setToken }: LoginPropsType) => {
     const [userName, setUserName] = useState('');
@@ -21,32 +23,34 @@ const Login = ({ setToken }: LoginPropsType) => {
 
     return (
         <>
-            <Typography variant="h4">Login form</Typography>
-            <form onSubmit={handleLogin}>
-                <>
-                    <TextField
-                        type="text"
-                        color="primary"
-                        label="Username"
-                        onChange={(e) => setUserName(e.target.value)}
-                        sx={{ marginTop: '1.5rem', display: 'block' }}
-                    />
-                </>
-                <>
-                    <TextField
-                        type="password"
-                        color="primary"
-                        label="Password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        sx={{ marginTop: '1.5rem', display: 'block' }}
-                    />
-                </>
-                <div style={{ marginTop: '1.5rem' }}>
-                    <Button color="primary" variant="contained" type="submit">
-                        Log in
-                    </Button>
-                </div>
-            </form>
+            <Grid container spacing={0} direction="column"
+                alignItems="center" justifyContent="center"
+                sx={{ minHeight: '100vh', backgroundImage: `url(${loginBackgroundImage})` }}>
+                <Grid item xs={4} sx={{ border: '1px solid black', padding: '8px', backgroundColor: 'white' }}>
+                    <Typography variant="h4">Log in to the portal</Typography>
+                    <form onSubmit={handleLogin} style={{ minWidth: '360px' }}>
+                        <TextField
+                            fullWidth
+                            type="text"
+                            color="primary"
+                            label="Username"
+                            onChange={(e) => setUserName(e.target.value)}
+                            sx={{ marginTop: '1.5rem', display: 'block' }}
+                        />
+                        <TextField
+                            fullWidth
+                            type="password"
+                            color="primary"
+                            label="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            sx={{ marginTop: '1.5rem', display: 'block' }}
+                        />
+                        <Button sx={{ marginTop: '1.5rem', float: 'right' }} color="primary" variant="contained" type="submit">
+                            Log in
+                        </Button>
+                    </form>
+                </Grid>
+            </Grid>
         </>
     );
 };

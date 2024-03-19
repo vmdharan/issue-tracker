@@ -2,6 +2,7 @@ portal/node_modules
 portal/.parcel-cache
 portal/parcel-bundle-reports
 portal/dist
+portal/src/assets
 
 portal-core-svc/node_modules
 
