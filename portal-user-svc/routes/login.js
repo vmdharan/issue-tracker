@@ -15,7 +15,7 @@ router.post('/', async (request, response) => {
                 });
         }
 
-        response.send({token: 'loginToken12345'});
+        response.send({token: 'loginToken12345', name: `${user.firstName} ${user.lastName}`});
     } catch (err) {
         console.error(err.message);
         response.status(500, 'Internal Server Error');
