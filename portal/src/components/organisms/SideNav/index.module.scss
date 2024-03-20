@@ -1,6 +1,6 @@
 .nav {
     height: 100vh;
-    background-image: linear-gradient(to bottom right, #05121f, #3e3498);
+    background-image: linear-gradient(125deg, #05121f, 70%, #3e3498);
     position: fixed;
     top: 0;
     z-index: 1;
@@ -22,10 +22,16 @@
 }
 
 .side-nav-li:hover {
-    background-color: rgb(60, 83, 160);
+    background-color: rgb(31, 42, 77);
+}
+
+.side-nav-li .side-nav-icon {
+    font-size: 14px;
+    color: #ffffff;
+    margin-right: 8px;
 }
 
 .side-nav-link {
     text-decoration: none;
-    color: #44ff7c;
+    color: #eafdf0;
 }

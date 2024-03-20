@@ -32,6 +32,8 @@ const Login = ({ setToken }: LoginPropsType) => {
                 sx={{
                     minHeight: '100vh',
                     backgroundImage: `url(${loginBackgroundImage})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                 }}
             >
                 <Grid

@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './index.module.scss';
+import Typography from 'components/atoms/Typography';
 
 const Footer = () => {
     const isSideBarOpen = true;
@@ -7,7 +8,7 @@ const Footer = () => {
 
     return (
         <footer className={styles['footer']} style={{ marginLeft: adaptiveMargin }}>
-            Footer
+            <Typography variant='caption'>© 2024 vmdharan. All rights reserved.</Typography>
         </footer>
     );
 };
