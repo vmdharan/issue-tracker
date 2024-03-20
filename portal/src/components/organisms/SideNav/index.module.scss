@@ -1,16 +1,20 @@
 .nav {
     height: 100vh;
-    background-image: linear-gradient(to bottom right, #001122, #88ddbb);
+    background-image: linear-gradient(to bottom right, #05121f, #3e3498);
     position: fixed;
     top: 0;
     z-index: 1;
+}
+
+.nav-title {
+    padding: 16px;
+    color: #4bfc45
 }
 
 .side-nav-ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    margin-top: 48px;
 }
 
 .side-nav-li {

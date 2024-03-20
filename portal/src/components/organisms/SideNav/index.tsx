@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as styles from './index.module.scss';
+import Typography from 'components/atoms/Typography';
 
 const SideNav = () => {
     const isSideBarOpen = true;
@@ -19,6 +20,7 @@ const SideNav = () => {
 
     return (
         <nav className={styles['nav']} style={{ width: adaptiveMargin }}>
+            <Typography variant='h5' className={styles['nav-title']}>Portal</Typography>
             <ul className={styles['side-nav-ul']}>
                 {links &&
                     links.map((link) => (
