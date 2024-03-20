@@ -8,7 +8,9 @@ const Footer = () => {
 
     return (
         <footer className={styles['footer']} style={{ marginLeft: adaptiveMargin }}>
-            <Typography variant='caption'>© 2024 vmdharan. All rights reserved.</Typography>
+            <Typography variant="caption">
+                © 2024 vmdharan. All rights reserved.
+            </Typography>
         </footer>
     );
 };

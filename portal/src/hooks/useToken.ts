@@ -31,7 +31,7 @@ const useToken = () => {
         }
         const currentSession = JSON.parse(tokenString);
         return currentSession?.name;
-    }
+    };
 
     const [token, setToken] = useState(getSessionToken());
     const [loggedInUser, setLoggedInUser] = useState(getLoggedInUser());

@@ -7,7 +7,10 @@ const MainContent = () => {
     const adaptiveMargin = isSideBarOpen ? '200px' : '48px';
 
     return (
-        <main className={styles['main-content']} style={{ marginLeft: adaptiveMargin }}>
+        <main
+            className={styles['main-content']}
+            style={{ marginLeft: adaptiveMargin }}
+        >
             <Outlet />
         </main>
     );

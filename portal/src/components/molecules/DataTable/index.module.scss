@@ -3,5 +3,29 @@
 }
 
 .datatable-row:hover {
-    background-color: rgb(239, 239, 239);
+    background-color: rgb(237, 237, 237);
+}
+
+.datatable-header {
+    background-color: black;
+}
+
+.datatable-header .datatable-header-cell {
+    color: white;
+    line-height: 0.875rem;
+    padding: 8px;
+}
+
+.datatable-row .datatable-cell {
+    line-height: 0.875rem;
+    padding: 8px;
+}
+
+.datatable-row .edit-btn {
+    font-size: 12px;
+}
+
+.datatable-row .delete-btn {
+    padding: 2px;
+    font-size: 12px;
 }

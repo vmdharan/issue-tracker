@@ -40,7 +40,9 @@ const ItemContent = (props: ItemContentProps) => {
     return (
         <>
             <Box className={styles['content']}>
-                <Typography variant='h4' component='h1'>{props.tagTitle}</Typography>
+                <Typography variant="h4" component="h1">
+                    {props.tagTitle}
+                </Typography>
                 <Alert severity="info" sx={{ margin: '8px 0' }}>
                     Click <a href={`/${props.tag}/create`}>here</a> to create a new
                     element.

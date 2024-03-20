@@ -38,7 +38,6 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
                 getDropdownData(f.name);
             });
         fillDropdowns();
-        console.log(dropdownData);
     }, [props.loadDropdowns]);
 
     const getDropdownData = async (entity: string) => {
@@ -77,7 +76,9 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
 
     return (
         <Box className={styles['create-edit-form-content']}>
-            <Typography variant='h4' component='h1'>{title}</Typography>
+            <Typography variant="h4" component="h1">
+                {title}
+            </Typography>
             <form onSubmit={handleSubmit} style={{ maxWidth: '480px' }}>
                 {props &&
                     props.schema.map((s) => {

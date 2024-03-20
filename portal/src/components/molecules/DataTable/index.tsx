@@ -15,22 +15,28 @@ const DataTable = (props: DataTableProps) => {
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 400 }}>
-                <TableHead sx={{ backgroundColor: 'black' }}>
+                <TableHead className={styles['datatable-header']}>
                     <TableRow>
                         {props.columns &&
                             props.columns.map((column, i) => (
                                 <TableCell
                                     key={i}
                                     align="center"
-                                    sx={{ color: 'white' }}
+                                    className={styles['datatable-header-cell']}
                                 >
                                     {column.headerName}
                                 </TableCell>
                             ))}
-                        <TableCell align="center" sx={{ color: 'white' }}>
+                        <TableCell
+                            align="center"
+                            className={styles['datatable-header-cell']}
+                        >
                             Edit?
                         </TableCell>
-                        <TableCell align="center" sx={{ color: 'white' }}>
+                        <TableCell
+                            align="center"
+                            className={styles['datatable-header-cell']}
+                        >
                             Delete?
                         </TableCell>
                     </TableRow>
@@ -43,19 +49,33 @@ const DataTable = (props: DataTableProps) => {
                                 className={styles['datatable-row']}
                             >
                                 {props.columns.map((col, j) => (
-                                    <TableCell key={j} align="center">
+                                    <TableCell
+                                        key={j}
+                                        align="center"
+                                        className={styles['datatable-cell']}
+                                    >
                                         {row[col.field]}
                                     </TableCell>
                                 ))}
-                                <TableCell align="center">
-                                    <Button href={`/${props.tag}/edit/${row._id}`}>
+                                <TableCell
+                                    align="center"
+                                    className={styles['datatable-cell']}
+                                >
+                                    <Button
+                                        href={`/${props.tag}/edit/${row._id}`}
+                                        className={styles['delete-btn']}
+                                    >
                                         Edit
                                     </Button>
                                 </TableCell>
-                                <TableCell align="center">
+                                <TableCell
+                                    align="center"
+                                    className={styles['datatable-cell']}
+                                >
                                     <Button
                                         variant="contained"
                                         color="primary"
+                                        className={styles['delete-btn']}
                                         onClick={() => props.confirmDelete(row._id)}
                                     >
                                         Delete

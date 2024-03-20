@@ -13,11 +13,8 @@ const Header = ({ handleLogout }: HeaderPropsType) => {
     return (
         <header className={styles['header']} style={{ marginLeft: adaptiveMargin }}>
             <AccountCircle className={styles['profile-icon']} />
-            <Typography variant='caption'>Welcome {loggedInUser}</Typography>
-            <span
-                className={styles['header-lo-button']}
-                onClick={handleLogout}
-            >
+            <Typography variant="caption">Welcome {loggedInUser}</Typography>
+            <span className={styles['header-lo-button']} onClick={handleLogout}>
                 Log out
             </span>
         </header>
