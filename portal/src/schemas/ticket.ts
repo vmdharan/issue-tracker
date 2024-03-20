@@ -142,5 +142,11 @@ const TicketElementRoute = MakeElementRoute(
     TicketEditFormProps,
 );
 
+const TicketNavLink = {
+    target: 'tickets',
+    label: 'Tickets',
+    icon: 'assignment',
+};
+
 export default TicketSchema;
-export { TicketElementRoute };
+export { TicketElementRoute, TicketNavLink };

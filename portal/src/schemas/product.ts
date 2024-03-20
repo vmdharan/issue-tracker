@@ -112,5 +112,11 @@ const ProductElementRoute = MakeElementRoute(
     ProductEditFormProps,
 );
 
+const ProductNavLink = {
+    target: 'products',
+    label: 'Products',
+    icon: 'newspaper',
+};
+
 export default ProductSchema;
-export { ProductElementRoute };
+export { ProductElementRoute, ProductNavLink };

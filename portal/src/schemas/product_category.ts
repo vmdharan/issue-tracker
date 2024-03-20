@@ -112,5 +112,11 @@ const ProductCategoryElementRoute = MakeElementRoute(
     ProductCategoryEditFormProps,
 );
 
+const ProductCategoryNavLink = {
+    target: 'product-categories',
+    label: 'Product categories',
+    icon: 'folder',
+};
+
 export default ProductCategorySchema;
-export { ProductCategoryElementRoute };
+export { ProductCategoryElementRoute, ProductCategoryNavLink };

@@ -112,5 +112,11 @@ const TicketCategoryElementRoute = MakeElementRoute(
     TicketCategoryEditFormProps,
 );
 
+const TicketCategoryNavLink = {
+    target: 'ticket-categories',
+    label: 'Ticket categories',
+    icon: 'category',
+};
+
 export default TicketCategorySchema;
-export { TicketCategoryElementRoute };
+export { TicketCategoryElementRoute, TicketCategoryNavLink };

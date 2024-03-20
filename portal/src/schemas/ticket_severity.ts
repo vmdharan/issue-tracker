@@ -98,5 +98,11 @@ const TicketSeverityElementRoute = MakeElementRoute(
     TicketSeverityEditFormProps,
 );
 
+const TicketSeverityNavLink = {
+    target: 'ticket-severities',
+    label: 'Ticket severities',
+    icon: 'label-important',
+};
+
 export default TicketSeveritySchema;
-export { TicketSeverityElementRoute };
+export { TicketSeverityElementRoute, TicketSeverityNavLink };

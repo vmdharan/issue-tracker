@@ -98,5 +98,11 @@ const OrganisationElementRoute = MakeElementRoute(
     OrganisationEditFormProps,
 );
 
+const OrganisationNavLink = {
+    target: 'organisations',
+    label: 'Organisations',
+    icon: 'business',
+};
+
 export default OrganisationSchema;
-export { OrganisationElementRoute };
+export { OrganisationElementRoute, OrganisationNavLink };

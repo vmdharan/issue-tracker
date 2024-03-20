@@ -108,5 +108,11 @@ const UserElementRoute = MakeElementRoute(
     UserEditFormProps,
 );
 
+const UserNavLink = {
+    target: 'users',
+    label: 'Users',
+    icon: 'people',
+};
+
 export default UserSchema;
-export { UserElementRoute };
+export { UserElementRoute, UserNavLink };
