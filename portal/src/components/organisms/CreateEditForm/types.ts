@@ -2,7 +2,7 @@
 import FormSchemaType, {
     DataSchema,
     ElementEditFormDropdownProps,
-} from 'schemas/types';
+} from '~/types/schema';
 
 type CreateEditFormPropsType = {
     data: DataSchema;

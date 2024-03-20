@@ -5,8 +5,9 @@ import FormSchemaType, {
     ElementEditFormProps,
     ListSchema,
     ServiceAPI,
-} from './types';
+} from '../types/schema';
 import CoreService from 'services/core';
+import MakeElementRoute from '../routes/MakeElementRoute';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_DESCRIPTION_LENGTH = 128;
@@ -90,9 +91,12 @@ const OrganisationCreateFormProps: ElementEditFormProps = {
     submitData: OrganisationAPI.createItem,
 };
 
-export default OrganisationSchema;
-export {
+const OrganisationElementRoute = MakeElementRoute(
+    '/organisations',
     OrganisationItemContentProps,
-    OrganisationEditFormProps,
     OrganisationCreateFormProps,
-};
+    OrganisationEditFormProps,
+);
+
+export default OrganisationSchema;
+export { OrganisationElementRoute };

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ZodStringCheck } from 'zod';
-import UserSchema from './user';
+import UserSchema from '../schemas/user';
 import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
-import TicketSeveritySchema from './ticket_severity';
-import TicketCategorySchema from './ticket_category';
-import TicketSchema from './ticket';
-import OrganisationSchema from './organisation';
-import ProductSchema from './product';
-import ProductCategorySchema from './product_category';
+import TicketSeveritySchema from '../schemas/ticket_severity';
+import TicketCategorySchema from '../schemas/ticket_category';
+import TicketSchema from '../schemas/ticket';
+import OrganisationSchema from '../schemas/organisation';
+import ProductSchema from '../schemas/product';
+import ProductCategorySchema from '../schemas/product_category';
 
 type FormSchemaType = {
     name: string;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ServiceAPI } from 'schemas/types';
+import { ServiceAPI } from '~/types/schema';
 
 type ItemContentProps = {
     service: ServiceAPI;

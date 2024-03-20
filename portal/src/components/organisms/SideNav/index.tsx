@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as styles from './index.module.scss';
 import Typography from 'components/atoms/Typography';
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -11,6 +10,8 @@ import NewspaperIcon from '@mui/icons-material/Newspaper';
 import FolderIcon from '@mui/icons-material/Folder';
 import PeopleIcon from '@mui/icons-material/People';
 import BusinessIcon from '@mui/icons-material/Business';
+
+import * as styles from './index.module.scss';
 
 const SideNav = () => {
     const isSideBarOpen = true;

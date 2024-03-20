@@ -5,9 +5,10 @@ import FormSchemaType, {
     ElementEditFormProps,
     ListSchema,
     ServiceAPI,
-} from './types';
+} from '../types/schema';
 import UserService from 'services/user';
 import CoreService from 'services/core';
+import MakeElementRoute from '../routes/MakeElementRoute';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_EMAIL_LENGTH = 64;
@@ -100,5 +101,12 @@ const UserCreateFormProps: ElementEditFormProps = {
     submitData: UserAPI.createItem,
 };
 
+const UserElementRoute = MakeElementRoute(
+    '/users',
+    UserItemContentProps,
+    UserCreateFormProps,
+    UserEditFormProps,
+);
+
 export default UserSchema;
-export { UserItemContentProps, UserEditFormProps, UserCreateFormProps };
+export { UserElementRoute };

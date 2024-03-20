@@ -5,8 +5,9 @@ import FormSchemaType, {
     ElementEditFormProps,
     ListSchema,
     ServiceAPI,
-} from './types';
+} from '../types/schema';
 import CoreService from 'services/core';
+import MakeElementRoute from '../routes/MakeElementRoute';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_DESCRIPTION_LENGTH = 128;
@@ -104,9 +105,12 @@ const TicketCategoryCreateFormProps: ElementEditFormProps = {
     submitData: TicketCategoryAPI.createItem,
 };
 
-export default TicketCategorySchema;
-export {
+const TicketCategoryElementRoute = MakeElementRoute(
+    '/ticket-categories',
     TicketCategoryItemContentProps,
-    TicketCategoryEditFormProps,
     TicketCategoryCreateFormProps,
-};
+    TicketCategoryEditFormProps,
+);
+
+export default TicketCategorySchema;
+export { TicketCategoryElementRoute };

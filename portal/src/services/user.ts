@@ -1,5 +1,5 @@
-import { USER_HOST_URI as HOST_URI } from './config';
-import { LoginUserType } from './types';
+import { USER_HOST_URI as HOST_URI } from '../config/default';
+import { LoginUserType } from '../types/login';
 
 const GetItem = async (itemName: string, id: string) => {
     const response = await fetch(HOST_URI + itemName + '/' + id)

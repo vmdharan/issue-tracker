@@ -5,8 +5,9 @@ import FormSchemaType, {
     ElementEditFormProps,
     ListSchema,
     ServiceAPI,
-} from './types';
+} from '../types/schema';
 import CoreService from 'services/core';
+import MakeElementRoute from '../routes/MakeElementRoute';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_DESCRIPTION_LENGTH = 128;
@@ -104,5 +105,12 @@ const ProductCreateFormProps: ElementEditFormProps = {
     submitData: ProductAPI.createItem,
 };
 
+const ProductElementRoute = MakeElementRoute(
+    '/products',
+    ProductItemContentProps,
+    ProductCreateFormProps,
+    ProductEditFormProps,
+);
+
 export default ProductSchema;
-export { ProductItemContentProps, ProductEditFormProps, ProductCreateFormProps };
+export { ProductElementRoute };

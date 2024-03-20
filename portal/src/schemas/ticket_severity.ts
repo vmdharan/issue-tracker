@@ -5,8 +5,9 @@ import FormSchemaType, {
     ElementEditFormProps,
     ListSchema,
     ServiceAPI,
-} from './types';
+} from '../types/schema';
 import CoreService from 'services/core';
+import MakeElementRoute from '../routes/MakeElementRoute';
 
 const MAX_NAME_LENGTH = 32;
 const MAX_DESCRIPTION_LENGTH = 128;
@@ -90,9 +91,12 @@ const TicketSeverityCreateFormProps: ElementEditFormProps = {
     submitData: TicketSeverityAPI.createItem,
 };
 
-export default TicketSeveritySchema;
-export {
+const TicketSeverityElementRoute = MakeElementRoute(
+    '/ticket-severities',
     TicketSeverityItemContentProps,
-    TicketSeverityEditFormProps,
     TicketSeverityCreateFormProps,
-};
+    TicketSeverityEditFormProps,
+);
+
+export default TicketSeveritySchema;
+export { TicketSeverityElementRoute };
