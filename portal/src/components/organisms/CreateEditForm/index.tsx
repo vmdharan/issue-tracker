@@ -11,6 +11,9 @@ import MenuItem from 'components/atoms/MenuItem';
 import { FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 import toSentenceCase from 'helpers/toSentenceCase';
 
+import Typography from 'components/atoms/Typography';
+import * as styles from './index.module.scss';
+
 const CreateEditForm = (props: CreateEditFormPropsType) => {
     const navigate = useNavigate();
     const [data, setData] = useState({});
@@ -73,15 +76,8 @@ const CreateEditForm = (props: CreateEditFormPropsType) => {
     };
 
     return (
-        <Box
-            sx={{
-                padding: '0 18px 0 0',
-                maxHeight: '80vh',
-                overflowX: 'hidden',
-                overflowY: 'auto',
-            }}
-        >
-            <h1>{title}</h1>
+        <Box className={styles['create-edit-form-content']}>
+            <Typography variant='h4' component='h1'>{title}</Typography>
             <form onSubmit={handleSubmit} style={{ maxWidth: '480px' }}>
                 {props &&
                     props.schema.map((s) => {
