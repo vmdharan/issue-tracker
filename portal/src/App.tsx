@@ -4,8 +4,6 @@ import Footer from 'components/organisms/Footer';
 import SideNav from 'components/organisms/SideNav';
 import MainContent from 'components/organisms/MainContent';
 import { RouterProvider, createBrowserRouter, useNavigate } from 'react-router-dom';
-import Dashboard from 'components/pages/Dashboard';
-import ErrorPage from 'components/pages/ErrorPage';
 import Login from 'components/pages/Login';
 import useToken from 'hooks/useToken';
 import ElementRoutes from './routes/ElementRoutes';
@@ -14,7 +12,6 @@ const router = createBrowserRouter([
     {
         Component: Root,
         children: [
-            { path: '/', element: <Dashboard />, errorElement: <ErrorPage /> },
             ...ElementRoutes,
         ],
     },
