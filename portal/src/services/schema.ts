@@ -1,11 +1,3 @@
-import organisation from 'schemas/organisation.json';
-import product_category from 'schemas/product_category.json';
-import product from 'schemas/product.json';
-import ticket_category from 'schemas/ticket_category.json';
-import ticket_severity from 'schemas/ticket_severity.json';
-import tickets from 'schemas/ticket.json';
-import user from 'schemas/user.json';
-
 import { SCHEMA_HOST_URI as HOST_URI } from 'config/default';
 
 import MakeElementRoute from 'routes/MakeElementRoute';
