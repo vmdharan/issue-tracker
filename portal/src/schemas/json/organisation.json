@@ -1,0 +1,29 @@
+{
+    "base": {
+        "schema_tag": "organisations",
+        "schema_title": "Organisation"
+    },
+    "service": {
+        "name": "core"
+    },
+    "nav_link": {
+        "target": "organisations",
+        "label": "Organisations",
+        "icon": "business"
+    },
+    "fields": {
+        "code": {
+            "type": "string",
+            "maxLength": 16
+        },
+        "name": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 128
+        }
+    },
+    "omit": {}
+}

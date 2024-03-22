@@ -8,10 +8,14 @@ import Login from 'components/pages/Login';
 import useToken from 'hooks/useToken';
 import ElementRoutes from './routes/ElementRoutes';
 
+import Dashboard from 'components/pages/Dashboard';
+import ErrorPage from 'components/pages/ErrorPage';
+
 const router = createBrowserRouter([
     {
         Component: Root,
         children: [
+            { path: '/', element: <Dashboard />, errorElement: <ErrorPage /> },
             ...ElementRoutes,
         ],
     },

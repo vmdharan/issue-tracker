@@ -1,0 +1,29 @@
+{
+    "base": {
+        "schema_tag": "ticket-severities",
+        "schema_title": "Ticket Severity"
+    },
+    "service": {
+        "name": "core"
+    },
+    "nav_link": {
+        "target": "ticket-severities",
+        "label": "Ticket severities",
+        "icon": "label-important"
+    },
+    "fields": {
+        "code": {
+            "type": "string",
+            "maxLength": 16
+        },
+        "name": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 128
+        }
+    },
+    "omit": {}
+}

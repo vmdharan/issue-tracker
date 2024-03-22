@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ZodStringCheck } from 'zod';
-import UserSchema from '../schemas/user';
+import { ZodObject, ZodStringCheck, ZodTypeAny } from 'zod';
 import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
-import TicketSeveritySchema from '../schemas/ticket_severity';
-import TicketCategorySchema from '../schemas/ticket_category';
-import TicketSchema from '../schemas/ticket';
-import OrganisationSchema from '../schemas/organisation';
-import ProductSchema from '../schemas/product';
-import ProductCategorySchema from '../schemas/product_category';
 
 type FormSchemaType = {
     name: string;
@@ -25,14 +18,7 @@ type ServiceAPI = {
     deleteItem: (itemName: string, id: string) => Promise<any>;
 };
 
-type DataSchema =
-    | typeof UserSchema
-    | typeof TicketSeveritySchema
-    | typeof TicketCategorySchema
-    | typeof TicketSchema
-    | typeof OrganisationSchema
-    | typeof ProductSchema
-    | typeof ProductCategorySchema;
+type DataSchema = ZodObject<{}, "strip", ZodTypeAny, {}, {}>;
 
 type ListSchema = {
     field: string;
