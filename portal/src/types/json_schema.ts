@@ -26,6 +26,15 @@ type JsonSchemaFields = {
 
 type JsonSchemaOmitFields = {
     [key: string]: boolean;
+};
+
+type JsonSchemaDropdownField = {
+    entity: string;
+    service: string;
+}
+
+type JsonSchemaDropdownFields = {
+    [key: string]: JsonSchemaDropdownField;
 }
 
 type JsonSchema = {
@@ -34,6 +43,7 @@ type JsonSchema = {
     nav_link: JsonSchemaNavLink;
     fields: JsonSchemaFields;
     omit: JsonSchemaOmitFields;
+    dropdowns: JsonSchemaDropdownFields;
 };
 
 export default JsonSchema;

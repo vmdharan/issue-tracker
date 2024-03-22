@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ZodObject, ZodStringCheck, ZodTypeAny } from 'zod';
-import type { FormVariant } from '~/components/organisms/CreateEditForm/types';
+import type { FormVariant } from 'components/organisms/CreateEditForm/types';
 
 type FormSchemaType = {
     name: string;

@@ -40,5 +40,11 @@
     },
     "omit": {
         "password": true
+    },
+    "dropdowns": {
+        "organisationCode": {
+            "entity": "organisations",
+            "service": "core"
+        }
     }
 }

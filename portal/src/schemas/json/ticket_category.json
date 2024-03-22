@@ -29,5 +29,11 @@
             "maxLength": 16
         }
     },
-    "omit": {}
+    "omit": {},
+    "dropdowns": {
+        "parentCategoryCode": {
+            "entity": "ticket-categories",
+            "service": "core"
+        }
+    }
 }

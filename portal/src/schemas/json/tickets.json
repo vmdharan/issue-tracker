@@ -41,5 +41,23 @@
             "maxLength": 16
         }
     },
-    "omit": {}
+    "omit": {},
+    "dropdowns": {
+        "creator": {
+            "entity": "users",
+            "service": "user"
+        },
+        "assignee": {
+            "entity": "users",
+            "service": "user"
+        },
+        "category": {
+            "entity": "ticket-categories",
+            "service": "core"
+        },
+        "severity": {
+            "entity": "ticket-severities",
+            "service": "core"
+        }
+    }
 }

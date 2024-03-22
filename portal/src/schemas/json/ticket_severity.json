@@ -25,5 +25,6 @@
             "maxLength": 128
         }
     },
-    "omit": {}
+    "omit": {},
+    "dropdowns": {}
 }

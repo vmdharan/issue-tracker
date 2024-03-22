@@ -65,7 +65,14 @@ const GetSchema = (elementType: string) => {
     const TargetFormSchema: FormSchemaType[] = Object.entries(
         TargetSchema.shape,
     ).map((entry) => {
-        if (
+        if(Object.keys(schema.dropdowns).includes(entry[0])) {
+            return {
+                name: entry[0],
+                type: 'Select',
+                entity: schema.dropdowns[entry[0]]?.entity,
+            };
+        }
+        else if (
             entry[1] instanceof ZodString &&
             entry[1].maxLength == MAX_DESCRIPTION_LENGTH
         ) {
@@ -126,6 +133,15 @@ const GetSchema = (elementType: string) => {
         itemName: schema.base.schema_tag,
         submitData: TargetAPI.editItem,
         loadData: TargetAPI.getItem,
+        loadDropdowns: schema.dropdowns ? 
+            Object.entries(schema.dropdowns).map(dropdownField => {
+                const svc = dropdownField[1].service == 'user' ? UserService : CoreService;
+                return {
+                    name: dropdownField[1].entity,
+                    selector: (entity) => svc.GetItemsForDropdown(entity)
+                }
+            })
+            : []
     }
 
     const TargetCreateFormProps: ElementEditFormProps = {
