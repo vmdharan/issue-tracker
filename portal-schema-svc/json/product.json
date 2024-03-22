@@ -1,0 +1,39 @@
+{
+    "base": {
+        "schema_tag": "products",
+        "schema_title": "Product"
+    },
+    "service": {
+        "name": "core"
+    },
+    "nav_link": {
+        "target": "products",
+        "label": "Products",
+        "icon": "newspaper"
+    },
+    "fields": {
+        "code": {
+            "type": "string",
+            "maxLength": 16
+        },
+        "name": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 128
+        },
+        "productCategory": {
+            "type": "string",
+            "maxLength": 16
+        }
+    },
+    "omit": {},
+    "dropdowns": {
+        "productCategory": {
+            "entity": "product-categories",
+            "service": "core"
+        }
+    }
+}

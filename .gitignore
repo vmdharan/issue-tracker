@@ -7,3 +7,6 @@ portal/src/assets
 portal-core-svc/node_modules
 
 portal-user-svc/node_modules
+
+portal-schema-svc/node_modules
+

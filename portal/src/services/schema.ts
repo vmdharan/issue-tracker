@@ -3,8 +3,10 @@ import product_category from 'schemas/product_category.json';
 import product from 'schemas/product.json';
 import ticket_category from 'schemas/ticket_category.json';
 import ticket_severity from 'schemas/ticket_severity.json';
-import tickets from 'schemas/tickets.json';
+import tickets from 'schemas/ticket.json';
 import user from 'schemas/user.json';
+
+import { SCHEMA_HOST_URI as HOST_URI } from 'config/default';
 
 import MakeElementRoute from 'routes/MakeElementRoute';
 import FormSchemaType, { 
@@ -22,21 +24,31 @@ import toSentenceCase from 'helpers/toSentenceCase';
 
 const MAX_DESCRIPTION_LENGTH = 128;
 
-const GetAllSchemas = () => {
-    return [
-        organisation,
-        product_category,
-        product,
-        ticket_category,
-        ticket_severity,
-        tickets,
-        user
-    ]
+const GetAllSchemas = async () => {
+    const response = await fetch(HOST_URI + 'schema')
+        .then((response) => {
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
+    return response;
 };
 
-const GetSchema = (elementType: string) => {
-    const schema: JsonSchema | undefined = GetAllSchemas().find(schema => schema.base.schema_tag == elementType);
+const GetSchemaByName = async (name: string) => {
+    const response = await fetch(HOST_URI + 'schema' + '/' + name)
+        .then((response) => {
+            return response.json();
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 
+    return response;
+};
+
+const GetProcessedSchema = (schema: JsonSchema | undefined) => {
     if (!schema) {
         return null;
     }
@@ -165,4 +177,4 @@ const GetSchema = (elementType: string) => {
     };
 };
 
-export default { GetAllSchemas, GetSchema };
+export default { GetAllSchemas, GetSchemaByName, GetProcessedSchema };

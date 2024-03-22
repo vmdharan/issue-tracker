@@ -1,0 +1,39 @@
+{
+    "base": {
+        "schema_tag": "ticket-categories",
+        "schema_title": "Ticket Category"
+    },
+    "service": {
+        "name": "core"
+    },
+    "nav_link": {
+        "target": "ticket-categories",
+        "label": "Ticket categories",
+        "icon": "category"
+    },
+    "fields": {
+        "code": {
+            "type": "string",
+            "maxLength": 16
+        },
+        "name": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "description": {
+            "type": "string",
+            "maxLength": 128
+        },
+        "parentCategoryCode": {
+            "type": "string",
+            "maxLength": 16
+        }
+    },
+    "omit": {},
+    "dropdowns": {
+        "parentCategoryCode": {
+            "entity": "ticket-categories",
+            "service": "core"
+        }
+    }
+}

@@ -47,3 +47,11 @@ type JsonSchema = {
 };
 
 export default JsonSchema;
+export {
+    JsonSchemaBase,
+    JsonSchemaService,
+    JsonSchemaNavLink,
+    JsonSchemaFields,
+    JsonSchemaOmitFields,
+    JsonSchemaDropdownFields
+}

@@ -1,0 +1,24 @@
+{
+    "name": "portal-schema-svc",
+    "version": "0.0.1",
+    "description": "Schema service for the issue-tracker web portal",
+    "main": "server.js",
+    "scripts": {
+      "server-schema": "nodemon",
+      "client": "npm start --prefix ../portal",
+      "dev": "npm run server-schema",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "vmdharan",
+    "license": "ISC",
+    "devDependencies": {
+      "concurrently": "^8.2.1",
+      "nodemon": "^3.0.1"
+    },
+    "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2"
+    }
+  }
+  

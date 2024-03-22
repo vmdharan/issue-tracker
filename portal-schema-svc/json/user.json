@@ -1,0 +1,50 @@
+{
+    "base": {
+        "schema_tag": "users",
+        "schema_title": "User"
+    },
+    "service": {
+        "name": "user"
+    },
+    "nav_link": {
+        "target": "users",
+        "label": "Users",
+        "icon": "people"
+    },
+    "fields": {
+        "firstName": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "lastName": {
+            "type": "string",
+            "maxLength": 32
+        },
+        "email": {
+            "type": "string",
+            "maxLength": 64
+        },
+        "userName": {
+            "type": "string",
+            "maxLength": 16
+        },
+        "password": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 16
+        },
+        "organisationCode": {
+            "type": "string",
+            "maxLength": 16
+        }
+    },
+    "omit": {
+        "password": true
+    },
+    "dropdowns": {
+        "organisationCode": {
+            "entity": "organisations",
+            "service": "core"
+        }
+    }
+}

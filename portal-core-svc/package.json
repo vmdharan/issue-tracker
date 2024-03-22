@@ -6,8 +6,9 @@
   "scripts": {
     "server-core": "nodemon",
     "server-user": "npm run dev --prefix ../portal-user-svc",
+    "server-schema": "npm run dev --prefix ../portal-schema-svc",
     "client": "npm start --prefix ../portal",
-    "dev": "concurrently \"npm run server-core\" \"npm run server-user\" \"npm run client\"",
+    "dev": "concurrently \"npm run server-core\" \"npm run server-user\" \"npm run server-schema\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
