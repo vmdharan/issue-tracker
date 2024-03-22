@@ -8,6 +8,7 @@ import * as styles from 'components/organisms/SideNav/index.module.scss';
 import { RouteObject } from "react-router-dom";
 
 const useSchema = () => {
+    const [isLoading, setIsLoading] = useState(true);
     const [processedSchemas, setProcessedSchemas] = useState<ProcessedSchema[]>([]);
     const [schemas, setSchemas] = useState<JsonSchema[]>([]);
     const [navLinks, setNavLinks] = useState<any[]>([]);
@@ -35,6 +36,8 @@ const useSchema = () => {
         setElementRoutes([
             ...processedSchemaResult?.map((schema: any) => schema.elementRoute)
         ]);
+
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -43,6 +46,7 @@ const useSchema = () => {
     }, []);
 
     return {
+        isLoading: isLoading,
         schemas: schemas,
         processedSchemas: processedSchemas,
         elementRoutes: elementRoutes,

@@ -23,7 +23,7 @@ const router = (elementRoutes: RouteObject[]) => createBrowserRouter([
     },
 ]);
 
-function Root() {
+const Root = () => {
     const { clearToken } = useToken();
     const navigate = useNavigate();
 
@@ -46,21 +46,16 @@ function Root() {
 
 const App = () => {
     const { token, setToken } = useToken();
-    const { elementRoutes } = useSchema();
+    const { isLoading, elementRoutes } = useSchema();
     console.log('render app');
-
-    const [er, setER] = useState<RouteObject[]>([]);
-    useEffect(() => {
-        setER(elementRoutes);
-    },[elementRoutes])
 
     if (!token) {
         return <Login setToken={setToken} />;
     }
-    if(!elementRoutes) {
+    if(isLoading) {
         return <></>;
     }
-    return <RouterProvider router={router(er)} />;
+    return <RouterProvider router={router(elementRoutes)} />;
 };
 
 export default App;
