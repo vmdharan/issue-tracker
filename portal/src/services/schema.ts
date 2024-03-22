@@ -1,10 +1,10 @@
-import organisation from 'schemas/json/organisation.json';
-import product_category from 'schemas/json/product_category.json';
-import product from 'schemas/json/product.json';
-import ticket_category from 'schemas/json/ticket_category.json';
-import ticket_severity from 'schemas/json/ticket_severity.json';
-import tickets from 'schemas/json/tickets.json';
-import user from 'schemas/json/user.json';
+import organisation from 'schemas/organisation.json';
+import product_category from 'schemas/product_category.json';
+import product from 'schemas/product.json';
+import ticket_category from 'schemas/ticket_category.json';
+import ticket_severity from 'schemas/ticket_severity.json';
+import tickets from 'schemas/tickets.json';
+import user from 'schemas/user.json';
 
 import MakeElementRoute from 'routes/MakeElementRoute';
 import FormSchemaType, { 
